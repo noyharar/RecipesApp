@@ -40,9 +40,9 @@ export default {
   methods: {
     async updateRecipes() {
       try {
-        const response = await this.axios.get(
-                "https://ass3-noa-noy.herokuapp.com/recipes/random"
-        );
+        // const response = await this.axios.get(
+        //         "https://ass3-noa-noy.herokuapp.com/recipes/random"
+        // );
 
         // console.log(response);
         const recipes = response.data;

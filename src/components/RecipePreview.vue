@@ -4,16 +4,20 @@
     class="recipe-preview"
   >
     <div class="recipe-body">
-      <img v-if="image_load" :src="recipe.image" class="recipe-image" />
+      <img v-if="image_load" :src="recipe.pictureUrl" class="recipe-image" />
     </div>
     <div class="recipe-footer">
-      <div :title="recipe.title" class="recipe-title">
-        {{ recipe.title }}
+      <div :title="recipe.name" class="recipe-title">
+        {{ recipe.name }}
       </div>
       <ul class="recipe-overview">
-        <li>{{ recipe.readyInMinutes }} minutes</li>
-        <li>{{ recipe.aggregateLikes }} likes</li>
+        <li>{{ recipe.timeToCookInMinutes }} minutes</li>
+        <li>{{ recipe.likes }} likes</li>
       </ul>
+      <div>
+      <img v-if="recipe.vegan" :src="'www.vegansymbols.com/symbol2/VeganSymbol_OpenSource2-2400px.png'" />
+      <img v-if="recipe.vegetarian" :src="'www.vegansymbols.com/symbol2/VeganSymbol_OpenSource2-2400px.png'" />
+      </div>
     </div>
   </router-link>
 </template>
@@ -21,7 +25,7 @@
 <script>
 export default {
   mounted() {
-    this.axios.get(this.recipe.image).then((i) => {
+    this.axios.get(this.recipe.pictureUrl).then((i) => {
       this.image_load = true;
     });
   },

@@ -37,6 +37,11 @@ export default {
 @import "@/scss/form-style.scss";
 
 #app {
+  background-image: url(https://i.imgur.com/u5YVU7k.jpg);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

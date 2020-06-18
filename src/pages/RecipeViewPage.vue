@@ -2,20 +2,20 @@
   <div class="container">
     <div v-if="recipe">
       <div class="recipe-header mt-3 mb-4">
-        <h1>{{ recipe.title }}</h1>
-        <img :src="recipe.image" class="center" />
+        <h1>{{ recipe.name }}</h1>
+        <img :src="recipe.pictureUrl" class="center" />
       </div>
       <div class="recipe-body">
         <div class="wrapper">
           <div class="wrapped">
             <div class="mb-3">
-              <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
-              <div>Likes: {{ recipe.aggregateLikes }} likes</div>
+              <div>Ready in {{ recipe.timeToCookInMinutes }} minutes</div>
+              <div>Likes: {{ recipe.likes }} likes</div>
             </div>
             Ingredients:
             <ul>
               <li
-                v-for="(r, index) in recipe.extendedIngredients"
+                v-for="(r, index) in recipe.ingredients"
                 :key="index + '_' + r.id"
               >
                 {{ r.original }}
@@ -25,7 +25,7 @@
           <div class="wrapped">
             Instructions:
             <ol>
-              <li v-for="s in recipe._instructions" :key="s.number">
+              <li v-for="s in recipe.instructions" :key="s.number">
                 {{ s.step }}
               </li>
             </ol>
@@ -87,14 +87,25 @@ export default {
         .reduce((a, b) => [...a, ...b], []);
 
       let _recipe = {
+        id,
+        name,
+        timeToCookInMinutes,
+        likes,
+        vegetarian,
+        vegan,
+        gluten,
+        pictureUrl,
         instructions,
-        _instructions,
-        analyzedInstructions,
-        extendedIngredients,
-        aggregateLikes,
-        readyInMinutes,
-        image,
-        title
+        numOfMeals,
+        ingredients
+        // instructions,
+        // _instructions,
+        // analyzedInstructions,
+        // extendedIngredients,
+        // aggregateLikes,
+        // readyInMinutes,
+        // pictureUrl,
+        // title
       };
 
       this.recipe = _recipe;

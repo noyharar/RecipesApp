@@ -5,7 +5,7 @@
       <slot></slot>
     </h3>
     <b-row>
-      <b-col v-for="r in recipes" :key="r.id">
+      <b-col v-for="r in recipesTemp" :key="r.id">
         <RecipePreview class="recipePreview" :recipe="r" />
       </b-col>
     </b-row>
@@ -23,6 +23,10 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    recipesTemp: {
+      type: Array,
+      required: false
     }
   },
   data() {
@@ -30,26 +34,26 @@ export default {
       recipes: []
     };
   },
-  mounted() {
-    this.updateRecipes();
-  },
-  methods: {
-    async updateRecipes() {
-      try {
-        const response = await this.axios.get(
-          "https://test-for-3-2.herokuapp.com/recipes/random"
-        );
-
-        // console.log(response);
-        const recipes = response.data.recipes;
-        this.recipes = [];
-        this.recipes.push(...recipes);
-        // console.log(this.recipes);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }
+  // mounted() {
+  //   this.updateRecipes();
+  // },
+  // methods: {
+  //   async updateRecipes() {
+  //     try {
+  //       const response = await this.axios.get(
+  //         "https://ass3-noa-noy.herokuapp.com/recipes/random"
+  //       );
+  //
+  //       // console.log(response);
+  //       const recipes = response.data;
+  //       this.recipes = [];
+  //       this.recipes.push(...recipes);
+  //       // console.log(this.recipes);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  // }
 };
 </script>
 

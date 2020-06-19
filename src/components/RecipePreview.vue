@@ -10,7 +10,7 @@
       vegetarian: recipe.vegetarian,
       ingredients: recipe.ingredients,
       instructions: recipe.instructions,
-      numOfMeals: recipe.numOfMeals
+      numOfMeals: recipe.numOfMeals,
     } }"
     class="recipe-preview"
   >
@@ -28,23 +28,52 @@
       <div>
       <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />
       <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />
+      <img v-if="watched" :src="'https://img.icons8.com/dusk/64/000000/check-all.png'"  />
+      <img v-if="favorite" :src="'<https://img.icons8.com/cotton/64/000000/like--v3.png'"  />
       </div>
+
     </div>
   </router-link>
 </template>
 
 <script>
+import MainPage from "../pages/MainPage";
+
 export default {
   data() {
     return {
+      watched:[]
     };
   },
   props: {
     recipe: {
       type: Object,
       required: true
-    }
+    },
+  },
+    mounted() {
+      this.checkIfWatched();
+    },
+    methods:{
+     async checkIfWatched(){
+        try {
+          const response = await this.axios.get(
+                  "https://ass3-noa-noy.herokuapp.com/profile/watch"
+          );
 
+          // console.log(response);
+          const watchedRecipes = response.data;
+          this.watchedRecipes = [];
+          this.watchedRecipes.push(...watchedRecipes);
+          if(watchedRecipes.some(recipe => recipe.id === this.recipe.id)){
+            this.watched = true;
+          }
+          // console.log(this.recipes);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
     // id: {
     //   type: Number,
     //   required: true
@@ -68,7 +97,7 @@ export default {
     //     return undefined;
     //   }
     // }
-  }
+
 };
 </script>
 

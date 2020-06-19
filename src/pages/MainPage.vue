@@ -34,6 +34,8 @@
     <img :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />
     Vegetarian:
     <img :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'" />
+    Viewed:
+    <img :src="'https://img.icons8.com/dusk/64/000000/check-all.png'"/>
   </b-container>
 </div>
 </template>

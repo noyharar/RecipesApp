@@ -10,6 +10,8 @@
         <router-link :to="{ name: 'login' }">Login</router-link>|
       </span>
       <span v-else>
+        <router-link :to="{ name: 'myRecipes' }">My Recipes</router-link>|
+        <router-link :to="{ name: 'favoritesRecipes' }">Favorites Recipes</router-link>|
         {{ $root.store.username }}: <button @click="Logout">Logout</button>|
       </span>
     </div>

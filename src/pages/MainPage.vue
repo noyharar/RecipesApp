@@ -12,6 +12,7 @@
         right: true
       }"
         ></RecipePreviewList>
+        <button v-on:click="updateRecipes()" type="button" class="btn btn-primary btn-sm">Random</button>
       </b-col>
       <b-col v-if="!$root.store.username">
         <Login></Login>
@@ -27,8 +28,8 @@
         ></RecipePreviewList>
       </b-col>
     </b-row>
-    <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
-    {{ !$root.store.username }}
+<!--    <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>-->
+<!--    {{ !$root.store.username }}-->
     Vegen:
     <img :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />
     Vegetarian:
@@ -53,7 +54,7 @@ export default {
   },
   mounted() {
     this.updateRecipes();
-    // this.updateWatchedRecipes();
+    this.updateWatchedRecipes();
   },
   methods: {
     async updateRecipes() {
@@ -81,7 +82,12 @@ export default {
         // console.log(response);
         const watchedRecipes = response.data;
         this.watched = [];
-        this.watched.push(...watchedRecipes);
+        for(var i = 0; i < 3 ; i ++){
+          this.watched.push(watchedRecipes[i]);
+        }
+        console.log(this.watched);
+
+        // this.watched.push(...watchedRecipes);
         // console.log(this.recipes);
       } catch (error) {
         console.log(error);

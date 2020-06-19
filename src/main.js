@@ -9,6 +9,7 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   routes,
 });
+// axios.defaults.withCredentials = true;
 
 import Vuelidate from "vuelidate";
 import "bootstrap/dist/css/bootstrap.css";

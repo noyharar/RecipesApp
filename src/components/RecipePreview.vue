@@ -1,10 +1,21 @@
 <template>
   <router-link
-    :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
+    :to="{ name: 'recipe', params: {
+      recipeId: recipe.id,
+      recipeName: recipe.name,
+      pictureUrl: recipe.pictureUrl,
+      timeToCookInMinutes: recipe.timeToCookInMinutes,
+      likes: recipe.likes,
+      vegan: recipe.vegan,
+      vegetarian: recipe.vegetarian,
+      ingredients: recipe.ingredients,
+      instructions: recipe.instructions,
+      numOfMeals: recipe.numOfMeals
+    } }"
     class="recipe-preview"
   >
     <div class="recipe-body">
-      <img v-if="image_load" :src="recipe.pictureUrl" class="recipe-image" />
+      <img :src="recipe.pictureUrl" class="recipe-image" />
     </div>
     <div class="recipe-footer">
       <div :title="recipe.name" class="recipe-title">
@@ -15,8 +26,8 @@
         <li>{{ recipe.likes }} likes</li>
       </ul>
       <div>
-      <img v-if="recipe.vegan" :src="'www.vegansymbols.com/symbol2/VeganSymbol_OpenSource2-2400px.png'" />
-      <img v-if="recipe.vegetarian" :src="'www.vegansymbols.com/symbol2/VeganSymbol_OpenSource2-2400px.png'" />
+      <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />
+      <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />
       </div>
     </div>
   </router-link>
@@ -24,14 +35,8 @@
 
 <script>
 export default {
-  mounted() {
-    this.axios.get(this.recipe.pictureUrl).then((i) => {
-      this.image_load = true;
-    });
-  },
   data() {
     return {
-      image_load: false
     };
   },
   props: {

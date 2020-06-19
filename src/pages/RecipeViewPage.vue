@@ -9,110 +9,88 @@
         <div class="wrapper">
           <div class="wrapped">
             <div class="mb-3">
+              <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'"  />
+              <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />
               <div>Ready in {{ recipe.timeToCookInMinutes }} minutes</div>
               <div>Likes: {{ recipe.likes }} likes</div>
+              <div> Number of meals: {{ recipe.numOfMeals }} meals</div>
             </div>
             Ingredients:
             <ul>
               <li
                 v-for="(r, index) in recipe.ingredients"
-                :key="index + '_' + r.id"
+                :key="index + '_' + r.name"
               >
-                {{ r.original }}
+                {{ r.name }}
+                {{ r.amount}}
+                {{ r.unit}}
               </li>
             </ul>
           </div>
           <div class="wrapped">
             Instructions:
-            <ol>
-              <li v-for="s in recipe.instructions" :key="s.number">
-                {{ s.step }}
-              </li>
-            </ol>
+            <P v-html="recipe.instructions"></P>
           </div>
         </div>
       </div>
-      <!-- <pre>
-      {{ $route.params }}
-      {{ recipe }}
-    </pre
-      > -->
+    </div>
+    <div>
+      Vegen:
+      <img :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />
+      Vegetarian:
+      <img :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'" />
     </div>
   </div>
 </template>
 
 <script>
 export default {
+
   data() {
     return {
       recipe: null
     };
   },
-  async created() {
-    try {
-      let response;
-      // response = this.$route.params.response;
 
+  mounted() {
+    this.updateRecipeAsWatched()
+  },
+  methods: {
+    async updateRecipeAsWatched() {
       try {
-        response = await this.axios.get(
-          "https://test-for-3-2.herokuapp.com/recipes/info",
-          {
-            params: { id: this.$route.params.recipeId }
-          }
+        const response = await this.axios.post(
+                "https://ass3-noa-noy.herokuapp.com/profile/watch",
+                {
+                  id: this.recipe.id,
+                },
+                {
+                  withCredentials: true
+                }
         );
-
-        // console.log("response.status", response.status);
-        if (response.status !== 200) this.$router.replace("/NotFound");
       } catch (error) {
-        console.log("error.response.status", error.response.status);
-        this.$router.replace("/NotFound");
-        return;
+        console.log(error);
       }
-
-      let {
-        analyzedInstructions,
-        instructions,
-        extendedIngredients,
-        aggregateLikes,
-        readyInMinutes,
-        image,
-        title
-      } = response.data.recipe;
-
-      let _instructions = analyzedInstructions
-        .map((fstep) => {
-          fstep.steps[0].step = fstep.name + fstep.steps[0].step;
-          return fstep.steps;
-        })
-        .reduce((a, b) => [...a, ...b], []);
-
-      let _recipe = {
-        id,
-        name,
-        timeToCookInMinutes,
-        likes,
-        vegetarian,
-        vegan,
-        gluten,
-        pictureUrl,
-        instructions,
-        numOfMeals,
-        ingredients
-        // instructions,
-        // _instructions,
-        // analyzedInstructions,
-        // extendedIngredients,
-        // aggregateLikes,
-        // readyInMinutes,
-        // pictureUrl,
-        // title
-      };
-
-      this.recipe = _recipe;
-    } catch (error) {
-      console.log(error);
+    },
+  },
+    async created() {
+      try {
+        let _recipe = {
+          id: this.$route.params.recipeId,
+          name: this.$route.params.recipeName,
+          pictureUrl: this.$route.params.pictureUrl,
+          timeToCookInMinutes: this.$route.params.timeToCookInMinutes,
+          likes: this.$route.params.likes,
+          ingredients: this.$route.params.ingredients,
+          instructions: this.$route.params.instructions,
+          numOfMeals: this.$route.params.numOfMeals,
+          vegan: this.$route.params.vegan,
+          vegetarian: this.$route.params.vegetarian,
+        };
+        this.recipe = _recipe;
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
 };
 </script>
 

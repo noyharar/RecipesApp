@@ -1,53 +1,87 @@
 <template>
-  <div class="container">
+  <div>
+  <b-container class="container">
     <h1 class="title">Main Page</h1>
-    <RecipePreviewList
-            title="Random Recipes"
-            :recipesTemp="recipes"
-            :class="{
+    <b-row>
+      <b-col>
+        <RecipePreviewList
+                title="Random Recipes"
+                :recipesTemp="recipes"
+                :class="{
+        // center: true
+        right: true
+      }"
+        ></RecipePreviewList>
+      </b-col>
+      <b-col v-if="!$root.store.username">
+        <Login></Login>
+      </b-col>
+      <b-col>
+        <RecipePreviewList v-if="$root.store.username"
+                title="Last Viewed Recipes"
+                :recipesTemp="watched"
+                :class="{
+        // blur: !$root.store.username,
         center: true
       }"
-    ></RecipePreviewList>
+        ></RecipePreviewList>
+      </b-col>
+    </b-row>
     <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
     {{ !$root.store.username }}
-
-    <RecipePreviewList
-      title="Last Viewed Recipes"
-      :class="{
-        RandomRecipes: true,
-        blur: !$root.store.username,
-        center: true
-      }"
-      disabled
-    ></RecipePreviewList>
-  </div>
+    Vegen:
+    <img :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />
+    Vegetarian:
+    <img :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'" />
+  </b-container>
+</div>
 </template>
 
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
+import Login from "./LoginPage";
 export default {
   components: {
+    Login,
     RecipePreviewList
   },
     data() {
     return {
-      recipes: []
+      recipes: [],
+      watched:[]
     };
   },
   mounted() {
     this.updateRecipes();
+    // this.updateWatchedRecipes();
   },
   methods: {
     async updateRecipes() {
       try {
-        // const response = await this.axios.get(
-        //         "https://ass3-noa-noy.herokuapp.com/recipes/random"
-        // );
+        const response = await this.axios.get(
+                "https://ass3-noa-noy.herokuapp.com/recipes/random"
+        );
 
         // console.log(response);
         const recipes = response.data;
         this.recipes = [];
         this.recipes.push(...recipes);
+        // console.log(this.recipes);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async updateWatchedRecipes() {
+      try {
+        const response = await this.axios.get(
+                "https://ass3-noa-noy.herokuapp.com/profile/watch"
+        );
+
+        // console.log(response);
+        const watchedRecipes = response.data;
+        this.watched = [];
+        this.watched.push(...watchedRecipes);
         // console.log(this.recipes);
       } catch (error) {
         console.log(error);

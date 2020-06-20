@@ -9,11 +9,11 @@
         <div class="wrapper">
           <div class="wrapped">
             <div class="mb-3">
-              <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'"  />
-              <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />
               <img v-if="favorite(recipe)" :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'" />
               <img v-if="favorite(recipe) === false" v-on:click=updateRecipeAsFavorite() :src="'https://img.icons8.com/cotton/64/000000/plus--v2.png'"  />
-              <div>Ready in {{ recipe.timeToCookInMinutes }} minutes</div>
+              <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'"  />
+              <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />
+             <div>Ready in {{ recipe.timeToCookInMinutes }} minutes</div>
               <div>Likes: {{ recipe.likes }} likes</div>
               <div> Number of meals: {{ recipe.numOfMeals }} meals</div>
             </div>

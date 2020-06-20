@@ -28,12 +28,12 @@
         <li>{{ recipe.likes }} likes</li>
       </ul>
       <footer>
-      <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />
-      <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />
-      <img v-if="seen(recipe) === true" :src="'https://img.icons8.com/dusk/64/000000/check-all.png'"  />
-      <img v-if="favorite(recipe) === true && this.$root.store.username" :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'"  />
-      <img v-if="favorite(recipe) === false && this.$root.store.username" v-on:click=addFavoriteRecipe() :src="'https://img.icons8.com/cotton/64/000000/plus--v2.png'"  />
-      </footer>
+          <img v-if="favorite(recipe) === true && this.$root.store.username" :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'"  />
+          <img v-if="favorite(recipe) === false && this.$root.store.username" v-on:click=addFavoriteRecipe() :src="'https://img.icons8.com/cotton/64/000000/plus--v2.png'"  />
+          <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />
+          <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />
+          <img v-if="seen(recipe) === true" :src="'https://img.icons8.com/dusk/64/000000/check-all.png'"  />
+  </footer>
     </div>
   </div>
 </template>

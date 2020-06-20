@@ -28,8 +28,8 @@
       <div>
       <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />
       <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />
-      <img v-if="watched" :src="'https://img.icons8.com/dusk/64/000000/check-all.png'"  />
-      <img v-if="favorite" :src="'<https://img.icons8.com/cotton/64/000000/like--v3.png'"  />
+      <img v-if="seen(recipe) === true" :src="'https://img.icons8.com/dusk/64/000000/check-all.png'"  />
+      <img v-if="favorite(recipe) === true" :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'"  />
       </div>
 
     </div>
@@ -42,8 +42,18 @@ import MainPage from "../pages/MainPage";
 export default {
   data() {
     return {
-      watched:[]
     };
+  },
+  methods: {
+    seen(recipe) {
+      let seen = this.$root.store.watchedRecipes && this.$root.store.watchedRecipes.includes(recipe.id);
+      // console.log("Watched: " + seen);
+      return seen;
+    },
+    favorite(recipe) {
+      let favorite = this.$root.store.favoriteRecipes && this.$root.store.favoriteRecipes.includes(recipe.id);
+      return favorite;
+    }
   },
   props: {
     recipe: {
@@ -51,29 +61,6 @@ export default {
       required: true
     },
   },
-    mounted() {
-      this.checkIfWatched();
-    },
-    methods:{
-     async checkIfWatched(){
-        try {
-          const response = await this.axios.get(
-                  "https://ass3-noa-noy.herokuapp.com/profile/watch"
-          );
-
-          // console.log(response);
-          const watchedRecipes = response.data;
-          this.watchedRecipes = [];
-          this.watchedRecipes.push(...watchedRecipes);
-          if(watchedRecipes.some(recipe => recipe.id === this.recipe.id)){
-            this.watched = true;
-          }
-          // console.log(this.recipes);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    }
     // id: {
     //   type: Number,
     //   required: true

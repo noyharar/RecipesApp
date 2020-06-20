@@ -14,11 +14,11 @@
         ></RecipePreviewList>
         <button v-on:click="updateRecipes()" type="button" class="btn btn-primary btn-sm">Random</button>
       </b-col>
-      <b-col v-if="!$root.store.username">
+      <b-col v-if="!this.$root.store.username">
         <Login></Login>
       </b-col>
       <b-col>
-        <RecipePreviewList v-if="$root.store.username"
+        <RecipePreviewList v-if="this.$root.store.username"
                 title="Last Viewed Recipes"
                 :recipesTemp="watched"
                 :class="{
@@ -51,12 +51,13 @@ export default {
     data() {
     return {
       recipes: [],
-      watched:[]
+      watched:[],
     };
   },
   mounted() {
     this.updateRecipes();
     this.updateWatchedRecipes();
+    this.updateFavoriteRecipes();
   },
   methods: {
     async updateRecipes() {
@@ -76,16 +77,24 @@ export default {
     },
 
     async updateWatchedRecipes() {
+      if(!this.$root.store.username) {
+        return;
+      }
       try {
         const response = await this.axios.get(
                 "https://ass3-noa-noy.herokuapp.com/profile/watch"
         );
-
         // console.log(response);
         const watchedRecipes = response.data;
+
         this.watched = [];
-        for(var i = 0; i < 3 ; i ++){
-          this.watched.push(watchedRecipes[i]);
+        if (watchedRecipes.length > 0) {
+          this.$root.store.addWatchedRecipes(watchedRecipes.map(r => r.id));
+          for (var i = 0; i < Math.min(3,watchedRecipes.length); i++) {
+            this.watched.push(watchedRecipes[i]);
+          }
+        } else {
+          this.$root.store.addWatchedRecipes([]);
         }
         console.log(this.watched);
 
@@ -94,7 +103,28 @@ export default {
       } catch (error) {
         console.log(error);
       }
-    }
+    },
+    async updateFavoriteRecipes() {
+      if (!this.$root.store.username) {
+        return;
+      }
+      try {
+        const response = await this.axios.get(
+                "https://ass3-noa-noy.herokuapp.com/profile/favorites"
+        );
+        // console.log(response);
+        const favoriteRecipes = response.data;
+        if (favoriteRecipes.length > 0) {
+          this.$root.store.addFavoriteRecipes(favoriteRecipes.map(r => r.id));
+        } else {
+          this.$root.store.addFavoriteRecipes([]);
+        }
+        // this.watched.push(...watchedRecipes);
+        // console.log(this.recipes);
+      } catch (error) {
+        console.log(error);
+      }
+    },
   }
 };
 </script>

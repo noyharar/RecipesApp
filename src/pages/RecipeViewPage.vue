@@ -11,6 +11,7 @@
             <div class="mb-3">
               <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'"  />
               <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />
+              <img v-if="favorite(recipe)" :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'"  />
               <div>Ready in {{ recipe.timeToCookInMinutes }} minutes</div>
               <div>Likes: {{ recipe.likes }} likes</div>
               <div> Number of meals: {{ recipe.numOfMeals }} meals</div>
@@ -58,6 +59,7 @@ export default {
   methods: {
     async updateRecipeAsWatched() {
       try {
+        this.$root.store.addWatchedOneRecipe(this.recipe.id);
         const response = await this.axios.post(
                 "https://ass3-noa-noy.herokuapp.com/profile/watch",
                 {
@@ -71,7 +73,27 @@ export default {
         console.log(error);
       }
     },
+    favorite(recipe) {
+      let seen = this.$root.store.favoritesRecipes && this.$root.store.favoritesRecipes.includes(recipe.id);
+      return seen;
+    }
   },
+  async updateRecipeAsFavorite() {
+    try {
+      this.$root.store.addFavoriteOneRecipe(this.recipe.id);
+      const response = await this.axios.post(
+              "https://ass3-noa-noy.herokuapp.com/profile/favorites",
+              {
+                id: this.recipe.id,
+              },
+              {
+                withCredentials: true
+              }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+},
     async created() {
       try {
         let _recipe = {

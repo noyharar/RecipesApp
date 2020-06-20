@@ -70,6 +70,36 @@ Vue.config.productionTip = false;
 
 const shared_data = {
   username: localStorage.username,
+  watchedRecipes: localStorage.watchedRecipes ? JSON.parse(localStorage.watchedRecipes) : [],
+  favoriteRecipes: localStorage.favoriteRecipes ? JSON.parse(localStorage.favoriteRecipes) : [],
+
+  addWatchedOneRecipe(watchedRecipe){
+    let item = localStorage.watchedRecipes;
+    let current = item ? JSON.parse(item) : [];
+    if(!current.includes(watchedRecipe)) {
+      current.push(watchedRecipe);
+      localStorage.setItem("watchedRecipes",JSON.stringify(current));
+      this.watchedRecipes = current;
+    }
+  },
+  addWatchedRecipes(watchedRecipes){
+    localStorage.setItem("watchedRecipes", JSON.stringify(watchedRecipes));
+    this.watchedRecipes = watchedRecipes;
+    // }
+  },
+  addFavoriteOneRecipe(favoriteRecipe) {
+    let item = localStorage.favoriteRecipes;
+    let current = item ? JSON.parse(item) : [];
+    if(!current.includes(favoriteRecipe)) {
+      current.push(favoriteRecipe);
+      localStorage.setItem("favoriteRecipes",JSON.stringify(current));
+      this.favoriteRecipes = current;
+    }
+  },
+  addFavoriteRecipes(favoriteRecipes){
+    localStorage.setItem("favoriteRecipes", JSON.stringify(favoriteRecipes));
+    this.favoriteRecipes = favoriteRecipes;
+  },
   login(username) {
     localStorage.setItem("username", username);
     this.username = username;
@@ -78,7 +108,11 @@ const shared_data = {
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
+    localStorage.removeItem("watchedRecipes");
+    localStorage.removeItem("favoriteRecipes");
     this.username = undefined;
+    this.watchedRecipes = undefined;
+    this.favoriteRecipes = undefined;
   },
 };
 console.log(shared_data);

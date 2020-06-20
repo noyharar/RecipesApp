@@ -88,23 +88,24 @@ export default {
   },
   methods: {
     validateState(param) {
-      const { $dirty, $error } = this.$v.form[param];
+      const {$dirty, $error} = this.$v.form[param];
       return $dirty ? !$error : null;
     },
     async Login() {
       try {
         const response = await this.axios.post(
-          " https://ass3-noa-noy.herokuapp.com/user/login",
-          {
-            username: this.form.username,
-            password: this.form.password
-          }
+                " https://ass3-noa-noy.herokuapp.com/user/login",
+                {
+                  username: this.form.username,
+                  password: this.form.password
+                }
         );
         // console.log(response);
         // this.$root.loggedIn = true;
         console.log(this.$root.store.login);
         this.$root.store.login(this.form.username);
-        this.$router.push("/");
+        this.$router.push("/").catch(err => {
+        })
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
@@ -118,7 +119,6 @@ export default {
         return;
       }
       // console.log("login method go");
-
       this.Login();
     }
   }

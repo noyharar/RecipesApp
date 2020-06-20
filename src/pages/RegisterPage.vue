@@ -188,7 +188,7 @@ export default {
             password: this.form.password
           }
         );
-        this.$router.push("/login");
+        this.$router.push("/login").catch(err => {});
         // console.log(response);
       } catch (err) {
         console.log(err.response);

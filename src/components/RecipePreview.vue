@@ -1,4 +1,5 @@
 <template>
+  <div>
   <router-link
     :to="{ name: 'recipe', params: {
       recipeId: recipe.id,
@@ -17,7 +18,8 @@
     <div class="recipe-body">
       <img :src="recipe.pictureUrl" class="recipe-image" />
     </div>
-    <div class="recipe-footer">
+  </router-link>
+  <div class="recipe-footer">
       <div :title="recipe.name" class="recipe-title">
         {{ recipe.name }}
       </div>
@@ -25,22 +27,23 @@
         <li>{{ recipe.timeToCookInMinutes }} minutes</li>
         <li>{{ recipe.likes }} likes</li>
       </ul>
-      <div>
+      <footer>
       <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />
       <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />
       <img v-if="seen(recipe) === true" :src="'https://img.icons8.com/dusk/64/000000/check-all.png'"  />
-      <img v-if="favorite(recipe) === true" :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'"  />
-      </div>
-
+      <img v-if="favorite(recipe) === true && this.$root.store.username" :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'"  />
+      <img v-if="favorite(recipe) === false && this.$root.store.username" v-on:click=addFavoriteRecipe() :src="'https://img.icons8.com/cotton/64/000000/plus--v2.png'"  />
+      </footer>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script>
 import MainPage from "../pages/MainPage";
 
 export default {
-  data() {
+    name: "recipePreview",
+    data() {
     return {
     };
   },
@@ -51,9 +54,30 @@ export default {
       return seen;
     },
     favorite(recipe) {
+
       let favorite = this.$root.store.favoriteRecipes && this.$root.store.favoriteRecipes.includes(recipe.id);
       return favorite;
-    }
+    },
+    async addFavoriteRecipe() {
+      try {
+        if(!this.$root.store.username) {
+          return;
+        }
+        this.$root.store.addFavoriteOneRecipe(this.recipe.id);
+        const response = await this.axios.post(
+                "https://ass3-noa-noy.herokuapp.com/profile/favorites",
+                {
+                  id: this.recipe.id,
+                },
+                {
+                  withCredentials: true
+                }
+        );
+        this.favorite(this.recipe.id);
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
   props: {
     recipe: {

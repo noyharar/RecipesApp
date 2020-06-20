@@ -36,6 +36,11 @@
     <img :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'" />
     Viewed:
     <img :src="'https://img.icons8.com/dusk/64/000000/check-all.png'"/>
+    Add to favorites:
+    <img :src="'https://img.icons8.com/cotton/64/000000/plus--v2.png'"  />
+    Favorites:
+    <img :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'"  />
+
   </b-container>
 </div>
 </template>

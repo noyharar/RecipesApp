@@ -236,7 +236,7 @@
                   }
           );
           const recipes = response.data;
-          this.searched = true;
+          // this.searched = true;
           this.recipes = [];
           this.recipes.push(...recipes);
           // console.log(response);
@@ -246,7 +246,7 @@
         }
       },
       onSearch() {
-        this.searched = false;
+        // this.searched = false;
         // console.log("register method called");
         this.$v.form.$touch();
         if (this.$v.form.$anyError) {

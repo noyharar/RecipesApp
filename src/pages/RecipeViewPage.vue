@@ -11,7 +11,8 @@
             <div class="mb-3">
               <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'"  />
               <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />
-              <img v-if="favorite(recipe)" :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'"  />
+              <img v-if="favorite(recipe)" :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'" />
+              <img v-if="favorite(recipe) === false" v-on:click=updateRecipeAsFavorite() :src="'https://img.icons8.com/cotton/64/000000/plus--v2.png'"  />
               <div>Ready in {{ recipe.timeToCookInMinutes }} minutes</div>
               <div>Likes: {{ recipe.likes }} likes</div>
               <div> Number of meals: {{ recipe.numOfMeals }} meals</div>
@@ -40,6 +41,10 @@
       <img :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />
       Vegetarian:
       <img :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'" />
+      Viewed:
+      <img :src="'https://img.icons8.com/dusk/64/000000/check-all.png'"/>
+      Favorites:
+      <img :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'"  />
     </div>
   </div>
 </template>
@@ -59,6 +64,9 @@ export default {
   methods: {
     async updateRecipeAsWatched() {
       try {
+        if(!this.$root.store.username) {
+          return;
+        }
         this.$root.store.addWatchedOneRecipe(this.recipe.id);
         const response = await this.axios.post(
                 "https://ass3-noa-noy.herokuapp.com/profile/watch",
@@ -76,9 +84,12 @@ export default {
     favorite(recipe) {
       let seen = this.$root.store.favoritesRecipes && this.$root.store.favoritesRecipes.includes(recipe.id);
       return seen;
-    }
-  },
+    },
+
   async updateRecipeAsFavorite() {
+    if(!this.$root.store.username) {
+      return;
+    }
     try {
       this.$root.store.addFavoriteOneRecipe(this.recipe.id);
       const response = await this.axios.post(
@@ -94,6 +105,7 @@ export default {
       console.log(error);
     }
 },
+  },
     async created() {
       try {
         let _recipe = {

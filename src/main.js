@@ -72,6 +72,7 @@ const shared_data = {
   username: localStorage.username,
   watchedRecipes: localStorage.watchedRecipes ? JSON.parse(localStorage.watchedRecipes) : [],
   favoriteRecipes: localStorage.favoriteRecipes ? JSON.parse(localStorage.favoriteRecipes) : [],
+  familyRecipes: localStorage.familyRecipes ? JSON.parse(localStorage.familyRecipes) : [],
 
   addWatchedOneRecipe(watchedRecipe){
     let item = localStorage.watchedRecipes;
@@ -100,6 +101,10 @@ const shared_data = {
     localStorage.setItem("favoriteRecipes", JSON.stringify(favoriteRecipes));
     this.favoriteRecipes = favoriteRecipes;
   },
+  addFamilyeRecipes(familyRecipes){
+    localStorage.setItem("familyRecipes", JSON.stringify(familyRecipes));
+    this.familyRecipes = familyRecipes;
+  },
   login(username) {
     localStorage.setItem("username", username);
     this.username = username;
@@ -110,6 +115,7 @@ const shared_data = {
     localStorage.removeItem("username");
     localStorage.removeItem("watchedRecipes");
     localStorage.removeItem("favoriteRecipes");
+    localStorage.removeItem("familyRecipes");
     this.username = undefined;
     this.watchedRecipes = undefined;
     this.favoriteRecipes = undefined;

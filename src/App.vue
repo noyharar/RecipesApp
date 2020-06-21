@@ -11,7 +11,8 @@
       </span>
       <span v-else>
         <router-link :to="{ name: 'myRecipes' }">My Recipes</router-link>|
-        <router-link :to="{ name: 'favoritesRecipes' }">Favorites Recipes</router-link>|
+        <router-link :to="{ name: 'favoritesRecipes' }">My Favorites Recipes</router-link>|
+        <router-link :to="{ name: 'familyRecipes' }">My Family's Recipes</router-link>|
         {{ $root.store.username }}: <button @click="Logout">Logout</button>|
       </span>
     </div>

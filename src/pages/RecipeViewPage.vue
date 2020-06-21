@@ -31,7 +31,15 @@
           </div>
           <div class="wrapped">
             Instructions:
-            <P v-html="recipe.instructions"></P>
+            <P v-html="recipe.instructions" ></P>
+            <div v-if="family(recipe)">
+            <br>
+            Family Member: {{ this.$root.store.familyRecipes.filter(r => r.id == recipe.id)[0].familyMember}}
+            <br>
+            Event time: {{ this.$root.store.familyRecipes.filter(r => r.id == recipe.id)[0].cookingEventTime}}
+            <img :src= "`{{ this.$root.store.familyRecipes.filter(r => r.id === recipe.id)[0].pictureMemberFood}}`" />
+
+            </div>
           </div>
         </div>
       </div>
@@ -85,7 +93,10 @@ export default {
       let seen = this.$root.store.favoritesRecipes && this.$root.store.favoritesRecipes.includes(recipe.id);
       return seen;
     },
-
+    family(recipe) {
+      let seen = this.$root.store.familyRecipes && this.$root.store.familyRecipes.some(r=> r.id === recipe.id);
+      return seen;
+    },
   async updateRecipeAsFavorite() {
     if(!this.$root.store.username) {
       return;

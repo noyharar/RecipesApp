@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link :to="{ name: 'main' }">Vue Recipes</router-link>|
+      <router-link :to="{ name: 'main' }">Recipes</router-link>|
       <router-link :to="{ name: 'search' }">Search</router-link>|
+       <router-link :to="{ name: 'About' }">About</router-link>|
 <!--      {{ !$root.store.username }}-->
       <span v-if="!$root.store.username">
-        Guest:
+
+        <b-nav-text><b>Hello Guest:</b></b-nav-text>
         <router-link :to="{ name: 'register' }">Register</router-link>|
         <router-link :to="{ name: 'login' }">Login</router-link>|
       </span>
@@ -37,31 +39,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/scss/form-style.scss";
+@import "./scss/form-style.scss";
 
-#app {
-  background-image: url(https://i.imgur.com/u5YVU7k.jpg);
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  min-height: 100vh;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

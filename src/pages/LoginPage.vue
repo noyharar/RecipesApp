@@ -100,7 +100,8 @@
       async Login() {
         try {
           const response = await this.axios.post(
-                  " https://ass3-noa-noy.herokuapp.com/user/login",
+                  this.$root.store.base_url + "/login",
+                  // " https://ass3-noa-noy.herokuapp.com/user/login",
                   {
                     username: this.form.username,
                     password: this.form.password

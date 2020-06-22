@@ -16,11 +16,9 @@
 		</div>
 
 		<div v-expand="isExpanded" class="options expand">
-			<div>
-				v-for="option in configOptions"
+			<div v-for="option in configOptions" :key="option.value"
 				class="option"
-				@click="setCurrentSelectedOption(option);"
-			>{{ option.value }}
+				@click="setCurrentSelectedOption(option);" >{{ option.value }}
 			</div>
 		</div>
 	</div>
@@ -145,6 +143,11 @@
 			}
 		},
 		created() {
+			document.addEventListener('click', this.documentClicked);
+			this.setConfigData();
+			this.setOptionsHeight();
+		},
+		mounted() {
 			document.addEventListener('click', this.documentClicked);
 			this.setConfigData();
 			this.setOptionsHeight();

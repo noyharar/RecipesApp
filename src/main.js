@@ -3,15 +3,18 @@ import App from "./App.vue";
 import VueAxios from "vue-axios";
 import axios from "axios";
 
+
 import routes from "./routes";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 const router = new VueRouter({
   routes,
 });
+import VueDropdown from "vue-dynamic-dropdown";
+Vue.use(VueDropdown);
 
+Vue.config.productionTip = false;
 axios.defaults.withCredentials = true;
-
 import Vuelidate from "vuelidate";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";

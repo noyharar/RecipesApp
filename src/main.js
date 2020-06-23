@@ -13,6 +13,9 @@ const router = new VueRouter({
 import VueDropdown from "vue-dynamic-dropdown";
 Vue.use(VueDropdown);
 
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 Vue.config.productionTip = false;
 axios.defaults.withCredentials = true;
 import Vuelidate from "vuelidate";

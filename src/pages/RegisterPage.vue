@@ -223,7 +223,7 @@
         sameAs,
         email
     } from "vuelidate/lib/validators";
-
+    const format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
     export default {
         name: "Register",
         data() {
@@ -267,7 +267,7 @@
                 password: {
                     required,
                     length: (p) => minLength(5)(p) && maxLength(10)(p),
-                  alpha,
+                    format,
                     hasNumber: (p) => /^(?=.*[0-9])/.test(p),
                     specialChar: (p) => /^(?=.*[!@#$%^&*])/.test(p)
                 },

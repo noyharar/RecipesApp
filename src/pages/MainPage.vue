@@ -10,11 +10,4 @@
         }
     };
 </script>
-<script>
-    import dropdown from "../components/dropdown";
-    export default {
-        components: {
-            dropdown
-        }
-    };
-</script>
+

@@ -1,7 +1,7 @@
 <template>
  <div>
   <RecipePreviewList
-          title="Random Recipes"
+          title="Explore these recipes"
           :recipesTemp="recipes"
           :class="{ right: true }"
   ></RecipePreviewList>

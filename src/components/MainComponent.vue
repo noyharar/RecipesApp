@@ -3,7 +3,7 @@
         <h1 class="title">Main Page</h1>
         <b-row>
             <b-col>
-                <RandomRecipes></RandomRecipes>
+                <RandomRecipes>Explore these recipes</RandomRecipes>
             </b-col>
             <b-col>
                 <LoginPage :from-main-page=true v-if="!this.$root.store.username"></LoginPage>

@@ -2,12 +2,11 @@
     <div>
         <b-card
                 title="About"
-                img-src="https://picsum.photos/600/300/?image=25"
+                img-src="https://media1.tenor.com/images/335c59743ad925b364bc0615b681c0c0/tenor.gif"
                 img-alt="Image"
                 img-top
                 tag="article"
-                size="large"
-                style="max-width: 20rem;"
+                style="background: black; max-width: 20rem;"
                 class="mb-2"
         >
             <b-card-text>

@@ -2,44 +2,57 @@
     <div id="app">
         <div id="nav">
             <b-navbar class="bd-navbar" type="dark">
-                <b-navbar-brand tag="h1" class="mb-0">Recipes</b-navbar-brand>
+                <b-navbar-brand tag="h1" class="mb-0"><b>Recipes</b></b-navbar-brand>
 
                 <b-collapse id="nav-collapse" is-nav>
                     <b-navbar-nav>
                         <b-nav-item to="/">
+                            <p class="h3 mb-2">
                             <b-icon
                                     align="left"
-                                    shift-v="-12"
+                                    shift-v="-3"
                                     icon="house"
-                            ></b-icon>
+                                    style="color: white;"
+                            ></b-icon></p>
                         </b-nav-item>
 
-                            <b-nav-item to="/search" align="right"><b-icon
+                            <b-nav-item to="/search" align="right">
+                                <p class="h3 mb-2">
+                                <b-icon
                                     align="left"
-                                    shift-v="-12"
+                                    shift-v="-3"
                                     icon="search"
-                            ></b-icon></b-nav-item>
+                                    style="color: white;"
+                            ></b-icon></p></b-nav-item>
 
 
-                        <b-nav-item to="/about"><b-icon
+                        <b-nav-item to="/about">
+                            <p class="h3 mb-2">
+                            <b-icon
                                 align="left"
-                                shift-v="-12"
+                                shift-v="-3"
                                 icon="info-circle"
-                        ></b-icon></b-nav-item>
+                                style="color: white;"
+                            ></b-icon></p></b-nav-item>
                     </b-navbar-nav>
                     <b-navbar-nav class="ml-auto">
             <span v-if="!$root.store.username">
               <b-navbar-nav>
+                  <p class="h3 mb-2">
                 <b-icon
-                        align="bottom"
-                        shift-v="-12"
+                        align="left"
+                        shift-v="-1"
+                        shift-h="-3"
                         icon="person-circle"
                 ></b-icon>
-
-                <b-nav-text><b>Hello Guest:</b></b-nav-text>
-                <b-nav-item to="/register" right>Register</b-nav-item>
+                  </p>
+                  <p>
+                <b-nav-text style="color: white;"><b>   Hello Guest   </b></b-nav-text>
+                      </p>
+                <b-nav-item class="nav-item"  to="/register" right>Register</b-nav-item>
                 <b-nav-item to="/login" right>Login</b-nav-item>
-              </b-navbar-nav>
+                    </b-navbar-nav>
+
             </span>
                         <span v-else>
               <b-navbar-nav>
@@ -155,5 +168,7 @@
 
 <style lang="scss">
     @import "./scss/form-style.scss";
-
+    /*.nav-item .nav a{*/
+    /*    color: white;*/
+    /*}*/
 </style>

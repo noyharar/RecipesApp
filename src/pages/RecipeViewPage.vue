@@ -3,7 +3,7 @@
     <div v-if="recipe">
       <div class="recipe-header mt-3 mb-4">
         <h1>{{ recipe.name }}</h1>
-        <img :src="recipe.pictureUrl" class="center" />
+        <img :src="recipe.pictureUrl" class=".center"  />
       </div>
       <div class="recipe-body">
         <div class="wrapper">
@@ -37,7 +37,7 @@
             Family Member: {{ this.$root.store.familyRecipes.filter(r => r.id == recipe.id)[0].familyMember}}
             <br>
             Event time: {{ this.$root.store.familyRecipes.filter(r => r.id == recipe.id)[0].cookingEventTime}}
-            <img :src= "`{{ this.$root.store.familyRecipes.filter(r => r.id === recipe.id)[0].pictureMemberFood}}`" />
+            <img class="family-photo" :src= "this.$root.store.familyRecipes.filter(r => r.id === recipe.id)[0].pictureMemberFood" alt="image" />
 
             </div>
           </div>
@@ -151,6 +151,20 @@ export default {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+.family-photo{
+/*.recipe-image {*/
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: block;
+  width: 30%;
+  height: auto;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
 }
 /* .recipe-header{
 

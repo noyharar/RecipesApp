@@ -24,9 +24,8 @@
       >
         <b-form-select
                 id="number"
-                v-model="$v.form.number.$model"
+                v-model= "form.number"
                 :options="numbers"
-                :state="validateState('number')"
         ></b-form-select>
       </b-form-group>
 
@@ -38,9 +37,8 @@
       >
         <b-form-select
                 id="diet"
-                v-model="$v.form.diet.$model"
+                v-model="form.diet"
                 :options="dietOptions"
-                :state="validateState('diet')"
         ></b-form-select>
       </b-form-group>
 
@@ -91,16 +89,24 @@
       >Search</b-button
       >
     </b-form>
-    <RecipePreviewList v-if="this.recipes.length"
-            title="results"
+    <br>
+    <div v-if="this.recipes.length">
+      <b-dropdown  id="dropdown-dropright" text="Sort By" class="ml-5 w-75" variant="primary"
+                  style="width:250px;">
+        <b-dropdown-item href="#" v-on:click="sortTime()">Time to cook</b-dropdown-item>
+        <b-dropdown-item href="#"  v-on:click="sortPopularity()">Popularity</b-dropdown-item>
+      </b-dropdown>
+      <br>
+    <RecipePreviewList
+            title="Results"
             :recipesTemp="recipes"
             :class="{
         center: true
       }"
             disabled
     ></RecipePreviewList>
-    <b-alert
-            class="mt-2"
+    </div>
+    <b-alert class="mt-2"
             v-if="form.submitError"
             variant="warning"
             dismissible
@@ -108,8 +114,7 @@
     >
       Search failed: {{ form.submitError }}
     </b-alert>
-    <b-alert
-            v-if="!this.recipes.length && this.searched"
+    <b-alert v-if="!this.recipes.length && this.searched"
              class="mt-2"
              variant="warning"
              dismissible
@@ -117,6 +122,7 @@
     >
       No recipes found
     </b-alert>
+
   </div>
 </template>
 
@@ -206,10 +212,6 @@
         query: {
           required,
           alpha
-        },
-        number: {
-        },
-        diet: {
         }
       }
     },
@@ -236,7 +238,7 @@
                   }
           );
           const recipes = response.data;
-          // this.searched = true;
+          this.searched = true;
           this.recipes = [];
           this.recipes.push(...recipes);
           // console.log(response);
@@ -246,7 +248,7 @@
         }
       },
       onSearch() {
-        // this.searched = false;
+        this.searched = false;
         // console.log("register method called");
         this.$v.form.$touch();
         if (this.$v.form.$anyError) {
@@ -254,6 +256,12 @@
         }
         // console.log("register method go");
         this.Search();
+      },
+      sortTime(){
+      this.recipes.sort((a, b) => a.timeToCookInMinutes - b.timeToCookInMinutes)
+      },
+      sortPopularity(){
+        this.recipes.sort((a, b) => b.likes - a.likes)
       }
     }
   };

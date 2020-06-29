@@ -12,16 +12,19 @@
         </b-row>
         <!--    <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>-->
         <!--    {{ !$root.store.username }}-->
-        Vegen:
-        <img :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />
-        Vegetarian:
-        <img :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'" />
-        Viewed:
-        <img :src="'https://img.icons8.com/dusk/64/000000/check-all.png'"/>
-        Add to favorites:
-        <img :src="'https://img.icons8.com/cotton/64/000000/plus--v2.png'"  />
-        Favorites:
-        <img :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'"  />
+<!--        Vegen:-->
+<!--        <img :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" width="3%"/>-->
+<!--        Vegetarian:-->
+<!--        <img :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'" width="3%"/>-->
+<!--        GlutenFree:-->
+<!--        <img :src="'https://img.icons8.com/plasticine/100/000000/no-gluten.png'" width="3%"/>-->
+<!--        Viewed:-->
+<!--        <img :src="'https://img.icons8.com/color/48/000000/visible.png'" width="3%"/>-->
+<!--        Add to favorites:-->
+<!--        <img :src="'https://img.icons8.com/cotton/64/000000/plus&#45;&#45;v2.png'" width="3%"/>-->
+<!--        Favorites:-->
+<!--        <img :src="'https://img.icons8.com/cotton/64/000000/like&#45;&#45;v3.png'" width="3%"/>-->
+
     </b-container>
 </template>
 

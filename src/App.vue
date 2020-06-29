@@ -56,12 +56,14 @@
             </span>
                         <span v-else>
               <b-navbar-nav>
+                  <p class="h3 mb-2">
+
                 <b-icon
                         align="bottom"
-                        shift-v="-12"
+                        shift-v="-3"
                         animation="throb"
                         icon="person-circle"
-                ></b-icon>
+                ></b-icon></p>
                 <b-nav-text class="mb-0"
                 ><b> hello, {{ $root.store.username }}: </b></b-nav-text
                 >
@@ -92,6 +94,20 @@
             </b-navbar>
         </div>
         <router-view />
+        <footer class="footerClass">
+        Vegen:
+        <img :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" width="3%"/>
+        Vegetarian:
+        <img :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'" width="3%"/>
+        GlutenFree:
+        <img :src="'https://img.icons8.com/plasticine/100/000000/no-gluten.png'" width="3%"/>
+        Viewed:
+        <img :src="'https://img.icons8.com/color/48/000000/visible.png'" width="3%"/>
+        Add to favorites:
+        <img :src="'https://img.icons8.com/cotton/64/000000/plus--v2.png'" width="3%"/>
+        Favorites:
+        <img :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'" width="3%"/>
+        </footer>
     </div>
 </template>
 
@@ -168,7 +184,16 @@
 
 <style lang="scss">
     @import "./scss/form-style.scss";
-    /*.nav-item .nav a{*/
-    /*    color: white;*/
-    /*}*/
+    .footerClass{
+        position: fixed;
+        min-height: 30px;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color:   black;
+        color: white;
+        min-height: auto;
+        font-size: 11px;
+        font-weight: bolder;
+    }
 </style>

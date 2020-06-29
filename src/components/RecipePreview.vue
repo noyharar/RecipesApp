@@ -1,21 +1,7 @@
 <template>
-    <router-link
-            :to="{ name: 'recipe', params: {
-      recipeId: recipe.id,
-      recipeName: recipe.name,
-      pictureUrl: recipe.pictureUrl,
-      timeToCookInMinutes: recipe.timeToCookInMinutes,
-      likes: recipe.likes,
-      vegan: recipe.vegan,
-      gluten: recipe.gluten,
-      vegetarian: recipe.vegetarian,
-      ingredients: recipe.ingredients,
-      instructions: recipe.instructions,
-      numOfMeals: recipe.numOfMeals,
-    } }"
-            class="recipe-preview"
-    >
-        <b-card
+
+
+    <b-card
                 no-body
                 style="align-self:flex-start;  display: flex;
                 align-items:flex-start;
@@ -28,8 +14,27 @@
                 bg-variant="light"
 
         >
+        <router-link
+                :to="{ name: 'recipe', params: {
+      recipeId: recipe.id,
+      recipeName: recipe.name,
+      pictureUrl: recipe.pictureUrl,
+      timeToCookInMinutes: recipe.timeToCookInMinutes,
+      likes: recipe.likes,
+      vegan: recipe.vegan,
+      gluten: recipe.gluten,
+      vegetarian: recipe.vegetarian,
+      ingredients: recipe.ingredients,
+      instructions: recipe.instructions,
+      numOfMeals: recipe.numOfMeals,
+    } }"
+                class="recipe-preview"
+        >
+                            <b-card-img :src="recipe.pictureUrl" alt="Image" class="recipe-image" top></b-card-img>
+
+        </router-link>
 <!--            <b-row no-gutters>-->
-                <b-card-img :src="recipe.pictureUrl" alt="Image" class="recipe-image" top></b-card-img>
+<!--                <b-card-img :src="recipe.pictureUrl" alt="Image" class="recipe-image" top></b-card-img>-->
                 <b-card-body :title="recipe.name">
 
                     <no-break>
@@ -46,32 +51,35 @@
                         <ul style="list-style-type: none; margin: 0; padding: 0">
                             <li style="animation:ease-in">
                                 Vegan:
-                                <b-icon v-if="recipe.vegan === true && this.$root.store.username" icon="check-circle"></b-icon>
-                                <b-icon v-if="recipe.vegan === false && this.$root.store.username" icon="x-circle"></b-icon>
+                                <img v-if="recipe.vegan" :src="'https://res.cloudinary.com/dfboebsri/image/upload/v1593098818/vegan_icon_k8coge.png'" style="width: -10%"/>
+
+<!--                                <b-icon v-if="recipe.vegan === true && this.$root.store.username" icon="check-circle"></b-icon>-->
+<!--                                <b-icon v-if="recipe.vegan === false && this.$root.store.username" icon="x-circle"></b-icon>-->
                             </li>
                             <li>
                                 Vegetarian:
-                                <b-icon v-if="recipe.vegetarian === true && this.$root.store.username" icon="check-circle"></b-icon>
-                                <b-icon v-if="recipe.vegetarian === false && this.$root.store.username" icon="x-circle"></b-icon>
+                                                        <img v-if="recipe.vegetarian" :src="'https://res.cloudinary.com/dfboebsri/image/upload/v1593098485/vegi_iokloj.png'"/>
+
+                                <!--                                <b-icon v-if="recipe.vegetarian" icon="check-circle"></b-icon>-->
+                                <b-icon v-if="recipe.vegetarian === false" icon="x-circle"></b-icon>
                             </li>
                             <li>
                                 Gluten Free:
-                                <b-icon v-if="recipe.gluten === true && this.$root.store.username" icon="check-circle"></b-icon>
-                                <b-icon v-if="recipe.gluten === false && this.$root.store.username" icon="x-circle"></b-icon>
+                                <b-icon v-if="recipe.gluten === true " icon="check-circle"></b-icon>
+                                <b-icon v-if="recipe.gluten === false" icon="x-circle"></b-icon>
                             </li>
                         </ul>
 
 
 <!--                        <img v-if="recipe.vegan" :src="'https://res.cloudinary.com/dfboebsri/image/upload/v1593098818/vegan_icon_k8coge.png'"/>-->
 <!--                        <img v-if="recipe.vegetarian" :src="'https://res.cloudinary.com/dfboebsri/image/upload/v1593098485/vegi_iokloj.png'"/>-->
-<!--                        <img v-if="recipe.gluten" :src="'https://res.cloudinary.com/dfboebsri/image/upload/v1593098396/gluten_icon_higvib.png'"/>-->
+<!--                        <img v-if="recipe.gluten" :src="'https://img.icons8.com/plasticine/100/000000/no-gluten.png'" width=15%/>-->
 
                     </b-card-text>
                 </b-card-body>
                 <!--              </b-col>-->
 <!--            </b-row>-->
         </b-card>
-    </router-link>
 </template>
 <!--    <div class="recipe-body">-->
 <!--      <img :src="recipe.pictureUrl" class="recipe-image"/>-->

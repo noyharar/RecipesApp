@@ -44,16 +44,6 @@
         </div>
       </div>
     </div>
-    <div>
-      Vegen:
-      <img :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />
-      Vegetarian:
-      <img :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'" />
-      Viewed:
-      <img :src="'https://img.icons8.com/dusk/64/000000/check-all.png'"/>
-      Favorites:
-      <img :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'"  />
-    </div>
   </div>
 </template>
 
@@ -153,8 +143,8 @@ export default {
   width: 50%;
 }
 
-.family-photo{
-/*.recipe-image {*/
+/*.family-photo{*/
+.recipe-image {
   margin-left: auto;
   margin-right: auto;
   margin-top: auto;

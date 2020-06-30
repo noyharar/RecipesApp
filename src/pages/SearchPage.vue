@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="title">Search</h1>
-    <b-form @submit.prevent="onSearch">
+    <b-form @submit.prevent="onSearch" >
       <b-form-group
               id="input-group-query"
               label-cols-sm="3"
@@ -147,7 +147,7 @@
     data() {
       return {
         form: {
-          query: "",
+          query: this.$root.store.lastSearch.query,
           number:"5",
           diet: "",
           cuisine: null,
@@ -215,11 +215,6 @@
         }
       }
     },
-    mounted() {
-      // console.log("mounted");
-      // console.log($v);
-    },
-
     methods: {
       validateState(param) {
         const { $dirty, $error } = this.$v.form[param];
@@ -237,6 +232,13 @@
                     intolerances: this.intolerances.map(x => x.name)
                   }
           );
+          this.$root.store.addLastSearch({
+            query: this.form.query,
+            number: this.form.number,
+            diet: this.form.diet,
+            cuisine: this.cuisines.map(x => x.name),
+            intolerances: this.intolerances.map(x => x.name)
+          });
           const recipes = response.data;
           this.searched = true;
           this.recipes = [];
@@ -262,6 +264,16 @@
       },
       sortPopularity(){
         this.recipes.sort((a, b) => b.likes - a.likes)
+      },
+      initLastSearch(){
+        if(this.$root.store.username) {
+          localStorage.removeItem("lastSearch");
+          query = this.$root.store.lastSearch.query,
+                  number = this.$root.store.lastSearch.number,
+                  diet = this.$root.store.lastSearch.diet,
+                  cuisine = this.$root.store.lastSearch.cuisine,
+                  intoleransces = this.$root.store.lastSearch.intoleransces
+        }
       }
     }
   };

@@ -1,19 +1,26 @@
 
 #app {
+  //background-image: url(https://image.freepik.com/free-photo/kitchen-utensils_74190-7094.jpg);
+  //background-image: url(https://image.freepik.com/free-photo/healthy-ingredients-white-wooden-desk_23-2148194994.jpg);
+  //background-image: url(https://image.freepik.com/free-photo/ingredients-making-toast-sandwich-white-background_23-2147925937.jpg);
   background-image: url(https://i.imgur.com/u5YVU7k.jpg);
   height: 100%;
+  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  //opacity: 0.5;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  //font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #3c3cef;
+  color: #006600;
+  //color: #3c3cef;
   min-height: 100vh;
 }
 
 #nav {
-    background: black;
+    background: #42b983;
   //background-image: url(https://previews.123rf.com/images/rastudio/rastudio1509/rastudio150900424/45319870-fast-food-meal-hand-drawn-in-chalk-on-a-blackboard-vector-white-icon-isolated-on-a-black-background-.jpg);
   //padding: 15px;
 }
@@ -24,5 +31,6 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+    color: #42b983;
+  //color: #42b983;
 }

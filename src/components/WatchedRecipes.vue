@@ -1,9 +1,11 @@
 <template>
-    <RecipePreviewList
+    <div class="list-recipes">
+    <RecipePreviewList  style="width: auto"
             title="Last Viewed Recipes"
             :recipesTemp="watched"
             :class="{ center: true }"
     ></RecipePreviewList>
+    </div>
 </template>
 
 <script>
@@ -101,6 +103,10 @@
     }
 </script>
 
-<style scoped>
-
+<style >
+    /*.list-recipes{*/
+    /*    width: 300px ;*/
+    /*    margin: 0  auto;*/
+    /*    !*float: right;*!*/
+    /*}*/
 </style>

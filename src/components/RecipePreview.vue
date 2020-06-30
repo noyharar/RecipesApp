@@ -5,7 +5,7 @@
                 no-body
                 style="align-self:flex-start;  display: flex;
                 align-items:flex-start;
-                width: auto;
+                width: 100%;
                 height: border-box;
                 justify-content:space-between;
                 flex-wrap:wrap;"
@@ -51,16 +51,15 @@
                         <ul style="list-style-type: none; margin: 0; padding: 0">
                             <li style="animation:ease-in">
                                 Vegan:
-                                <img v-if="recipe.vegan" :src="'https://res.cloudinary.com/dfboebsri/image/upload/v1593098818/vegan_icon_k8coge.png'" style="width: -10%"/>
-
-<!--                                <b-icon v-if="recipe.vegan === true && this.$root.store.username" icon="check-circle"></b-icon>-->
-<!--                                <b-icon v-if="recipe.vegan === false && this.$root.store.username" icon="x-circle"></b-icon>-->
+<!--                                <img v-if="recipe.vegan" :src="'https://res.cloudinary.com/dfboebsri/image/upload/v1593098818/vegan_icon_k8coge.png'" style="width: -10%"/>-->
+                                <b-icon v-if="recipe.vegan === true && this.$root.store.username" icon="check-circle"></b-icon>
+                                <b-icon v-if="recipe.vegan === false && this.$root.store.username" icon="x-circle"></b-icon>
                             </li>
                             <li>
                                 Vegetarian:
-                                                        <img v-if="recipe.vegetarian" :src="'https://res.cloudinary.com/dfboebsri/image/upload/v1593098485/vegi_iokloj.png'"/>
+<!--                                                        <img v-if="recipe.vegetarian" :src="'https://res.cloudinary.com/dfboebsri/image/upload/v1593098485/vegi_iokloj.png'"/>-->
 
-                                <!--                                <b-icon v-if="recipe.vegetarian" icon="check-circle"></b-icon>-->
+                                <b-icon v-if="recipe.vegetarian" icon="check-circle"></b-icon>
                                 <b-icon v-if="recipe.vegetarian === false" icon="x-circle"></b-icon>
                             </li>
                             <li>

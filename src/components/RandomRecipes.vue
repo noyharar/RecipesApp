@@ -1,10 +1,12 @@
 <template>
- <div>
-  <RecipePreviewList
+ <div class="list-recipes">
+  <RecipePreviewList  style="width: auto"
           title="Explore these recipes"
           :recipesTemp="recipes"
           :class="{ right: true }"
   ></RecipePreviewList>
+  <br>
+  <br>
   <button v-on:click="updateRecipes()" type="button" class="btn btn-primary btn-sm">Random</button>
  </div>
 </template>
@@ -45,6 +47,11 @@
  }
 </script>
 
-<style scoped>
+<style >
 
+/*.list-recipes{*/
+/* width: 300px ;*/
+/* margin: 0  auto;*/
+/* float: left;*/
+/*}*/
 </style>

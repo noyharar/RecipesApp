@@ -1,9 +1,10 @@
 <template>
+    <div class="main-class">
     <b-container class="container">
         <h1 class="title">Main Page</h1>
-        <b-row>
-            <b-col>
-                <RandomRecipes>Explore these recipes</RandomRecipes>
+        <b-row >
+            <b-col class="try">
+                <RandomRecipes >Explore these recipes</RandomRecipes>
             </b-col>
             <b-col>
                 <LoginPage :from-main-page=true v-if="!this.$root.store.username"></LoginPage>
@@ -26,6 +27,7 @@
 <!--        <img :src="'https://img.icons8.com/cotton/64/000000/like&#45;&#45;v3.png'" width="3%"/>-->
 
     </b-container>
+    </div>
 </template>
 
 <script>
@@ -50,9 +52,17 @@
 </script>
 
 <style lang="scss" scoped>
-    .RandomRecipes {
-        margin: 10px 0 10px;
-    }
+    /*.main-class{*/
+    /*    !*!*position: inherit;*!*!*/
+    /*    !*margin-left: 100px;*!*/
+    /*    !*margin-right: 150px;*!*/
+    /*}*/
+    /*.try{*/
+    /*    mergin-left: auto;*/
+    /*}*/
+    /*.RandomRecipes {*/
+    /*    margin: 10px 0 10px;*/
+    /*}*/
     .blur {
         -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
         filter: blur(2px);
@@ -61,5 +71,7 @@
         pointer-events: none;
         cursor: default;
     }
-
+    .container{
+        max-width: 875px;
+    }
 </style>

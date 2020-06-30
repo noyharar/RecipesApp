@@ -79,6 +79,13 @@ const shared_data = {
   watchedRecipes: localStorage.watchedRecipes ? JSON.parse(localStorage.watchedRecipes) : [],
   favoriteRecipes: localStorage.favoriteRecipes ? JSON.parse(localStorage.favoriteRecipes) : [],
   familyRecipes: localStorage.familyRecipes ? JSON.parse(localStorage.familyRecipes) : [],
+  lastSearch: localStorage.lastSearch ? JSON.parse(localStorage.lastSearch) : {},
+
+  addLastSearch(i_lastSearch){
+    localStorage.setItem("lastSearch", JSON.stringify(i_lastSearch));
+    this.lastSearch = lastSearch;
+    // }
+  },
 
   addWatchedOneRecipe(watchedRecipe){
     let item = localStorage.watchedRecipes;
@@ -122,6 +129,7 @@ const shared_data = {
     localStorage.removeItem("watchedRecipes");
     localStorage.removeItem("favoriteRecipes");
     localStorage.removeItem("familyRecipes");
+    localStorage.removeItem("lastSearch");
     this.username = undefined;
     this.watchedRecipes = undefined;
     this.favoriteRecipes = undefined;
@@ -141,7 +149,7 @@ new Vue({
     toast(title, content, variant = null, append = false) {
       this.$bvToast.toast(`${content}`, {
         title: `${title}`,
-        toaster: "b-toaster-top-center",
+        toaster: "b-toaster-top-left",
         variant: variant,
         solid: true,
         appendToast: append,

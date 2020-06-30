@@ -11,6 +11,7 @@
         // center: true
         center: true
       }"
+                            style="width: 50%"
                     ></RecipePreviewList>
                 </b-col>
             </b-row>

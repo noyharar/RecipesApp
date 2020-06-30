@@ -94,7 +94,11 @@
             </b-navbar>
         </div>
         <router-view />
-        <footer></footer>
+        <footer>
+
+
+
+        </footer>
 <!--        <footer class="footerClass">-->
 <!--        Vegen:-->
 <!--        <img :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" width="3%"/>-->

@@ -7,7 +7,7 @@
   ></RecipePreviewList>
 
   <div class="random-btn">
-  <button v-on:click="updateRecipes()" type="button" class="btn btn-outline-dark">Random</button>
+  <button v-on:click="updateRecipes()" type="button" class="btn btn-dark btn-lg btn-block">Random</button>
    <br>
   </div>
   </div>

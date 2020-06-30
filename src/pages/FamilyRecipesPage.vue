@@ -1,16 +1,15 @@
 <template>
     <div>
         <b-container class="container">
-            <h1 class="title">My Recipes</h1>
+            <h1 class="title"><b>My Family's Recipes</b></h1>
             <b-row>
                 <b-col>
                     <RecipePreviewList
-                            title="My Family's Recipes"
                             :recipesTemp="recipes"
                             :class="{
-        // center: true
         center: true
       }"
+                            style="width: 50%"
                     ></RecipePreviewList>
                 </b-col>
             </b-row>
@@ -66,6 +65,10 @@
     ::v-deep .blur .recipe-preview {
         pointer-events: none;
         cursor: default;
+        width: 50%;
     }
-
+    .title{
+        margin: auto;
+        width: 40%;
+        padding: 10px;    }
 </style>

@@ -3,7 +3,7 @@
     <div v-if="recipe">
       <div class="recipe-header mt-3 mb-4">
         <h1>{{ recipe.name }}</h1>
-        <img :src="recipe.pictureUrl" class=".center"  />
+        <img :src="recipe.pictureUrl" class="center"  />
       </div>
       <div class="recipe-body">
         <div class="wrapper">
@@ -14,14 +14,16 @@
                 Family Member: {{ this.$root.store.familyRecipes.filter(r => r.id == recipe.id)[0].familyMember}}
                 <br>
                 Event time: {{ this.$root.store.familyRecipes.filter(r => r.id == recipe.id)[0].cookingEventTime}}
-                <img class="family-photo" :src= "this.$root.store.familyRecipes.filter(r => r.id === recipe.id)[0].pictureMemberFood" alt="image" />
+<!--                <img class="family-photo" :src= "this.$root.store.familyRecipes.filter(r => r.id === recipe.id)[0].pictureMemberFood" alt="image" />-->
               </div>
               <img v-if="favorite(recipe) && !family(recipe)" :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'" />
               <img v-if="favorite(recipe) === false && !family(recipe)" v-on:click=updateRecipeAsFavorite() :src="'https://img.icons8.com/cotton/64/000000/plus--v2.png'"  />
 <!--              <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'"  />-->
 <!--              <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />-->
              <div>Ready in {{ recipe.timeToCookInMinutes }} minutes</div>
+              <div v-if="!family(recipe)">
               <div>Likes: {{ recipe.likes }} likes</div>
+              </div>
               <div> Number of meals: {{ recipe.numOfMeals }} meals</div>
               <b-icon icon="clock"></b-icon>
               {{ recipe.timeToCookInMinutes }} minutes
@@ -60,11 +62,17 @@
             </ul>
           </div>
           <div class="wrapped">
+            <div>
             Instructions:
             <P v-html="recipe.instructions" ></P>
+            </div>
+            <div v-if="family(recipe)">
+              <img class="family-photo" :src= "this.$root.store.familyRecipes.filter(r => r.id === recipe.id)[0].pictureMemberFood" alt="image" />
+            </div>
+            </div>
 
-          </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -166,7 +174,12 @@ export default {
   width: 50%;
 }
 
-/*.family-photo{*/
+.family-photo{
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 300px;
+}
 .recipe-image {
   margin-left: auto;
   margin-right: auto;

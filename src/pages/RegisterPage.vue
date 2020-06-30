@@ -186,9 +186,10 @@
             <b-button type="reset" variant="danger">Reset</b-button>
             <b-button
                     type="submit"
-                    variant="primary"
+                    class="btn btn-dark btn-lg btn-block"
+                    variant="light"
+                    border-variant="dark"
                     style="width:250px;"
-                    class="ml-5 w-75"
             >Register
             </b-button
             >

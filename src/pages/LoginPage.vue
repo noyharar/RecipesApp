@@ -35,12 +35,11 @@
           Password is required
         </b-form-invalid-feedback>
       </b-form-group>
-
       <b-button
               type="submit"
-              variant="primary"
-              style="width:100px;display:block;"
-              class="mx-auto w-100"
+      class="btn btn-dark btn-lg btn-block"
+              variant="light"
+              border-variant="dark"
       >Login</b-button
       >
       <div class="mt-2">

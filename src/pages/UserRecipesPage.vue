@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-container class="container">
-            <h1 class="title">My Recipes</h1>
+            <h1 class="title"><b>My Recipes</b></h1>
             <b-row>
                 <b-col>
                     <RecipePreviewList
@@ -10,6 +10,7 @@
         // center: true
         center: true
       }"
+                            style="width: 50%"
                     ></RecipePreviewList>
                 </b-col>
             </b-row>

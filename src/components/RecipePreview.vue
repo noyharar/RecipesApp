@@ -7,7 +7,7 @@
                 height: border-box;
                 justify-content:space-between;
                 flex-wrap:wrap;"
-                border-variant="light"
+                border-variant="danger"
                 class="overflow-hidden"
                 bg-variant="light"
 
@@ -28,17 +28,20 @@
     } }"
                 class="recipe-preview"
         >
-                            <b-card-img :src="recipe.pictureUrl" alt="Image" class="recipe-image" top></b-card-img>
+            <b-card-img :src="recipe.pictureUrl" alt="Image" class="recipe-image" top></b-card-img>
 
         </router-link>
 <!--            <b-row no-gutters>-->
 <!--                <b-card-img :src="recipe.pictureUrl" alt="Image" class="recipe-image" top></b-card-img>-->
                 <b-card-body :title="recipe.name">
 
-                        <b-icon v-if="seen(recipe) === true" icon="eye-fill"></b-icon>&#160;&#160;&#160;
-                        <b-icon v-if="favorite(recipe) === true && this.$root.store.username" icon="heart-fill"></b-icon>
-                        <b-icon v-if="favorite(recipe) === false && this.$root.store.username" v-on:click=addFavoriteRecipe() icon="heart"></b-icon>
-                        &#160;&#160;&#160;&#160;<b-icon icon="hand-thumbs-up"></b-icon>
+                        <b-icon v-if="seen(recipe) === true && this.$root.store.username" icon="eye-fill"></b-icon>&#160;&#160;&#160;
+                        <b-icon v-if="favorite(recipe) === true && this.$root.store.username" icon="heart-fill" ></b-icon>
+                    <b-icon v-b-tooltip.hover title="Add recipe to your favorite" v-if="favorite(recipe) === false && this.$root.store.username" v-on:click=addFavoriteRecipe() type="button" icon="heart">
+                    </b-icon>
+<!--                        <b-icon v-if="favorite(recipe) === false && this.$root.store.username" v-on:click=addFavoriteRecipe() type="button" icon="heart"></b-icon>-->
+                        &#160;&#160;&#160;&#160;
+                    <b-icon icon="hand-thumbs-up"></b-icon>
                         {{ recipe.likes }}
                     <b-card-text>
                         <b-icon icon="clock"></b-icon>
@@ -48,8 +51,8 @@
                             <li style="animation:ease-in">
                                 Vegan:
 <!--                                <img v-if="recipe.vegan" :src="'https://res.cloudinary.com/dfboebsri/image/upload/v1593098818/vegan_icon_k8coge.png'" style="width: -10%"/>-->
-                                <b-icon v-if="recipe.vegan === true && this.$root.store.username" icon="check-circle"></b-icon>
-                                <b-icon v-if="recipe.vegan === false && this.$root.store.username" icon="x-circle"></b-icon>
+                                <b-icon v-if="recipe.vegan === true" icon="check-circle"></b-icon>
+                                <b-icon v-if="recipe.vegan === false" icon="x-circle"></b-icon>
                             </li>
                             <li>
                                 Vegetarian:

@@ -1,6 +1,4 @@
 <template>
-
-
     <b-card
                 no-body
                 style="align-self:flex-start;  display: flex;
@@ -9,7 +7,7 @@
                 height: border-box;
                 justify-content:space-between;
                 flex-wrap:wrap;"
-                border-variant="primary"
+                border-variant="light"
                 class="overflow-hidden"
                 bg-variant="light"
 
@@ -37,13 +35,11 @@
 <!--                <b-card-img :src="recipe.pictureUrl" alt="Image" class="recipe-image" top></b-card-img>-->
                 <b-card-body :title="recipe.name">
 
-                    <no-break>
                         <b-icon v-if="seen(recipe) === true" icon="eye-fill"></b-icon>&#160;&#160;&#160;
                         <b-icon v-if="favorite(recipe) === true && this.$root.store.username" icon="heart-fill"></b-icon>
                         <b-icon v-if="favorite(recipe) === false && this.$root.store.username" v-on:click=addFavoriteRecipe() icon="heart"></b-icon>
                         &#160;&#160;&#160;&#160;<b-icon icon="hand-thumbs-up"></b-icon>
                         {{ recipe.likes }}
-                    </no-break>
                     <b-card-text>
                         <b-icon icon="clock"></b-icon>
                         {{ recipe.timeToCookInMinutes }} minutes
@@ -61,14 +57,14 @@
 
                                 <b-icon v-if="recipe.vegetarian" icon="check-circle"></b-icon>
                                 <b-icon v-if="recipe.vegetarian === false" icon="x-circle"></b-icon>
-                            </li>
-                            <li>
-                                Gluten Free:
-                                <b-icon v-if="recipe.gluten === true " icon="check-circle"></b-icon>
-                                <b-icon v-if="recipe.gluten === false" icon="x-circle"></b-icon>
-                            </li>
-                        </ul>
 
+                        </li>
+                        <li>
+                            Gluten Free:
+                            <b-icon v-if="recipe.gluten === true " icon="check-circle"></b-icon>
+                            <b-icon v-if="recipe.gluten === false" icon="x-circle"></b-icon>
+                        </li>
+                        </ul>
 
 <!--                        <img v-if="recipe.vegan" :src="'https://res.cloudinary.com/dfboebsri/image/upload/v1593098818/vegan_icon_k8coge.png'"/>-->
 <!--                        <img v-if="recipe.vegetarian" :src="'https://res.cloudinary.com/dfboebsri/image/upload/v1593098485/vegi_iokloj.png'"/>-->
@@ -118,7 +114,6 @@
                 return seen;
             },
             favorite(recipe) {
-
                 let favorite = this.$root.store.favoriteRecipes && this.$root.store.favoriteRecipes.includes(recipe.id);
                 return favorite;
             },

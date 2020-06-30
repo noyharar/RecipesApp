@@ -5,10 +5,12 @@
           :recipesTemp="recipes"
           :class="{ right: true }"
   ></RecipePreviewList>
-  <br>
-  <br>
-  <button v-on:click="updateRecipes()" type="button" class="btn btn-primary btn-sm">Random</button>
- </div>
+
+  <div class="random-btn">
+  <button v-on:click="updateRecipes()" type="button" class="btn btn-outline-dark">Random</button>
+   <br>
+  </div>
+  </div>
 </template>
 
 <script>
@@ -48,7 +50,10 @@
 </script>
 
 <style >
-
+ .random-btn{
+  position: inherit;
+  margin-left: 100px;
+  margin-right: 150px; }
 /*.list-recipes{*/
 /* width: 300px ;*/
 /* margin: 0  auto;*/

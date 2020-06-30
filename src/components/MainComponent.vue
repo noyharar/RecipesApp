@@ -74,4 +74,8 @@
     .container{
         max-width: 875px;
     }
+    .title{
+        margin: auto;
+        width: 33%;
+        padding: 10px;    }
 </style>

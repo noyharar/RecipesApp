@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <h1 class="title">Search</h1>
-    <b-form @submit.prevent="onSearch" >
+<!--<div v-if="$root.store.username" :v-on="initLastSearch()"> </div>-->
+    <b-form @submit.prevent="onSearch">
       <b-form-group
               id="input-group-query"
               label-cols-sm="3"
@@ -83,9 +84,9 @@
 
       <b-button
               type="submit"
-              variant="primary"
+              variant="light"
               style="width:250px;"
-              class="ml-5 w-75"
+              class="btn btn-outline-dark"
       >Search</b-button
       >
     </b-form>
@@ -144,13 +145,13 @@
       RecipePreviewList,
       Multiselect
     },
+
     data() {
       return {
         form: {
-          query: this.$root.store.lastSearch.query,
+          query: "",
           number:"5",
-          diet: "",
-          cuisine: null,
+          diet:"",
           submitError: undefined
         },
         searched: false,
@@ -215,37 +216,44 @@
         }
       }
     },
+    beforeRouteEnter (to, from, next) {
+        next(vm => vm.initLastSearch());
+    },
     methods: {
       validateState(param) {
         const { $dirty, $error } = this.$v.form[param];
         return $dirty ? !$error : null;
       },
       async Search() {
+        console.log("roiprprprppri")
         try {
+          if(this.form.query.length > 0) {
+            this.$root.store.addLastSearch({
+              query: this.form.query,
+              number: this.form.number,
+              diet: this.form.diet,
+              cuisines: this.cuisines.map(x => x.name),
+              intolerances: this.intolerances.map(x => x.name)
+            });
+          }
           const response = await this.axios.post(
                   "https://ass3-noa-noy.herokuapp.com/recipes/search",
                   {
                     query: this.form.query,
                     number: this.form.number,
                     diet: this.form.diet,
-                    cuisine: this.cuisines.map(x => x.name),
+                    cuisines: this.cuisines.map(x => x.name),
                     intolerances: this.intolerances.map(x => x.name)
                   }
           );
-          this.$root.store.addLastSearch({
-            query: this.form.query,
-            number: this.form.number,
-            diet: this.form.diet,
-            cuisine: this.cuisines.map(x => x.name),
-            intolerances: this.intolerances.map(x => x.name)
-          });
+
           const recipes = response.data;
           this.searched = true;
           this.recipes = [];
           this.recipes.push(...recipes);
-          // console.log(response);
+          console.log("noy" + response.data);
         } catch (err) {
-          console.log(err.response);
+          console.log("roi" + err.response);
           this.form.submitError = err.response.data.message;
         }
       },
@@ -266,13 +274,15 @@
         this.recipes.sort((a, b) => b.likes - a.likes)
       },
       initLastSearch(){
-        if(this.$root.store.username) {
-          localStorage.removeItem("lastSearch");
-          query = this.$root.store.lastSearch.query,
-                  number = this.$root.store.lastSearch.number,
-                  diet = this.$root.store.lastSearch.diet,
-                  cuisine = this.$root.store.lastSearch.cuisine,
-                  intoleransces = this.$root.store.lastSearch.intoleransces
+        console.log("noynoynoyno");
+        if(this.$root.store.username && this.$root.store.lastSearch) {
+        //   // localStorage.removeItem("lastSearch");
+                console.log("queryyyy");
+                this.form.query = this.$root.store.lastSearch.query;
+                  this.form.number = this.$root.store.lastSearch.number
+                  this.form.diet = this.$root.store.lastSearch.diet,
+                  this.cuisines = this.$root.store.lastSearch.cuisines,
+                  this.intoleransces = this.$root.store.lastSearch.intoleransces
         }
       }
     }

@@ -9,13 +9,43 @@
         <div class="wrapper">
           <div class="wrapped">
             <div class="mb-3">
-              <img v-if="favorite(recipe)" :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'" />
-              <img v-if="favorite(recipe) === false" v-on:click=updateRecipeAsFavorite() :src="'https://img.icons8.com/cotton/64/000000/plus--v2.png'"  />
-              <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'"  />
-              <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />
+              <div v-if="family(recipe)">
+                <br>
+                Family Member: {{ this.$root.store.familyRecipes.filter(r => r.id == recipe.id)[0].familyMember}}
+                <br>
+                Event time: {{ this.$root.store.familyRecipes.filter(r => r.id == recipe.id)[0].cookingEventTime}}
+                <img class="family-photo" :src= "this.$root.store.familyRecipes.filter(r => r.id === recipe.id)[0].pictureMemberFood" alt="image" />
+              </div>
+              <img v-if="favorite(recipe) && !family(recipe)" :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'" />
+              <img v-if="favorite(recipe) === false && !family(recipe)" v-on:click=updateRecipeAsFavorite() :src="'https://img.icons8.com/cotton/64/000000/plus--v2.png'"  />
+<!--              <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'"  />-->
+<!--              <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />-->
              <div>Ready in {{ recipe.timeToCookInMinutes }} minutes</div>
               <div>Likes: {{ recipe.likes }} likes</div>
               <div> Number of meals: {{ recipe.numOfMeals }} meals</div>
+              <b-icon icon="clock"></b-icon>
+              {{ recipe.timeToCookInMinutes }} minutes
+              <br>
+              <ul style="list-style-type: none; margin: 0; padding: 0">
+                <li style="animation:ease-in">
+                  Vegan:
+                  <!--                                <img v-if="recipe.vegan" :src="'https://res.cloudinary.com/dfboebsri/image/upload/v1593098818/vegan_icon_k8coge.png'" style="width: -10%"/>-->
+                  <b-icon v-if="recipe.vegan === true && this.$root.store.username" icon="check-circle"></b-icon>
+                  <b-icon v-if="recipe.vegan === false && this.$root.store.username" icon="x-circle"></b-icon>
+                </li>
+                <li>
+                  Vegetarian:
+                 <b-icon v-if="recipe.vegetarian" icon="check-circle"></b-icon>
+                  <b-icon v-if="recipe.vegetarian === false" icon="x-circle"></b-icon>
+
+                </li>
+                <li>
+                  Gluten Free:
+                  <b-icon v-if="recipe.gluten === true " icon="check-circle"></b-icon>
+                  <b-icon v-if="recipe.gluten === false" icon="x-circle"></b-icon>
+                </li>
+              </ul>
+
             </div>
             Ingredients:
             <ul>
@@ -32,14 +62,7 @@
           <div class="wrapped">
             Instructions:
             <P v-html="recipe.instructions" ></P>
-            <div v-if="family(recipe)">
-            <br>
-            Family Member: {{ this.$root.store.familyRecipes.filter(r => r.id == recipe.id)[0].familyMember}}
-            <br>
-            Event time: {{ this.$root.store.familyRecipes.filter(r => r.id == recipe.id)[0].cookingEventTime}}
-            <img class="family-photo" :src= "this.$root.store.familyRecipes.filter(r => r.id === recipe.id)[0].pictureMemberFood" alt="image" />
 
-            </div>
           </div>
         </div>
       </div>
@@ -156,7 +179,13 @@ export default {
   -moz-background-size: cover;
   background-size: cover;
 }
-/* .recipe-header{
-
-} */
+.container{
+background-image: url("https://image.freepik.com/free-photo/grunge-vintage-old-paper-background_1373-431.jpg");
+/*background-image: url("https://image.freepik.com/free-photo/wooden-board-surface-close-up_23-2148495716.jpg");*/
+  height: 100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>

@@ -5,7 +5,6 @@
             <b-row>
                 <b-col>
                     <RecipePreviewList
-                            title="My Recipes"
                             :recipesTemp="recipes"
                             :class="{
         // center: true
@@ -16,10 +15,6 @@
             </b-row>
             <!--    <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>-->
             <!--    {{ !$root.store.username }}-->
-            Vegen:
-            <img :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />
-            Vegetarian:
-            <img :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'" />
         </b-container>
     </div>
 </template>
@@ -73,5 +68,8 @@
         pointer-events: none;
         cursor: default;
     }
-
+    .title{
+        margin: auto;
+        width: 33%;
+        padding: 10px;    }
 </style>

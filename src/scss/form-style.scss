@@ -14,13 +14,14 @@
   //font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #006600;
-  //color: #3c3cef;
+  //color: #006600;
+  color: brown;
   min-height: 100vh;
 }
 
 #nav {
-    background: #42b983;
+    //background: #42b983;
+    background: brown;
   //background-image: url(https://previews.123rf.com/images/rastudio/rastudio1509/rastudio150900424/45319870-fast-food-meal-hand-drawn-in-chalk-on-a-blackboard-vector-white-icon-isolated-on-a-black-background-.jpg);
   //padding: 15px;
 }
@@ -31,6 +32,13 @@
 }
 
 #nav a.router-link-exact-active {
-    color: #42b983;
+    color: white;
+  font-weight: bold;
+  //font-size: 18px ;
+  mso-text-animation: lights;
+  text-decoration: underline;
+  background: brown;
+
+
   //color: #42b983;
 }

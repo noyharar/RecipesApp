@@ -2,7 +2,7 @@
     <div id="app">
         <div id="nav">
             <b-navbar class="bd-navbar" type="dark">
-                <b-navbar-brand tag="h1" class="mb-0"><b>Recipes</b></b-navbar-brand>
+                <b-navbar-brand tag="h1" class="mb-0"><b>EVERYBODY COOKS NOW</b></b-navbar-brand>
 
                 <b-collapse id="nav-collapse" is-nav>
                     <b-navbar-nav>
@@ -15,8 +15,7 @@
                                     style="color: white;"
                             ></b-icon></p>
                         </b-nav-item>
-
-                            <b-nav-item to="/search" align="right">
+                            <b-nav-item :to="{name: 'search'}" align="right">
                                 <p class="h3 mb-2">
                                 <b-icon
                                     align="left"
@@ -44,6 +43,7 @@
                         shift-v="-1"
                         shift-h="-3"
                         icon="person-circle"
+                        style="color: white;"
                 ></b-icon>
                   </p>
                   <p>
@@ -65,7 +65,7 @@
                         icon="person-circle"
                 ></b-icon></p>
                 <b-nav-text class="mb-0"
-                ><b> hello, {{ $root.store.username }}: </b></b-nav-text
+                ><b> Hello, {{ $root.store.username }}: </b></b-nav-text
                 >
                 <b-nav-item-dropdown
                         id="my-nav-dropdown"
@@ -94,6 +94,7 @@
             </b-navbar>
         </div>
         <router-view />
+        <footer></footer>
 <!--        <footer class="footerClass">-->
 <!--        Vegen:-->
 <!--        <img :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" width="3%"/>-->

@@ -83,7 +83,7 @@ const shared_data = {
 
   addLastSearch(i_lastSearch){
     localStorage.setItem("lastSearch", JSON.stringify(i_lastSearch));
-    this.lastSearch = lastSearch;
+    this.lastSearch = i_lastSearch;
     // }
   },
 
@@ -133,6 +133,7 @@ const shared_data = {
     this.username = undefined;
     this.watchedRecipes = undefined;
     this.favoriteRecipes = undefined;
+    this.lastSearch = undefined;
   },
 };
 console.log(shared_data);

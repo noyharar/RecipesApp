@@ -6,7 +6,7 @@
                 img-alt="Image"
                 img-top
                 tag="article"
-                style="background: black; max-width: 20rem;"
+                style="background: white; max-width: 20rem;"
                 class="mb-2"
         >
             <b-card-text>

@@ -7,6 +7,7 @@
                     <RecipePreviewList
                             title= "My Recipes"
                             :recipesTemp="recipes"
+                            :userRecipes=true
                             :class="{
         // center: true
         center: true

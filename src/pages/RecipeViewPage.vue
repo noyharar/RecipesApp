@@ -20,9 +20,8 @@
               <img v-if="favorite(recipe) === false && !family(recipe)" v-on:click=updateRecipeAsFavorite() :src="'https://img.icons8.com/cotton/64/000000/plus--v2.png'"  />
 <!--              <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'"  />-->
 <!--              <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />-->
-             <div>Ready in {{ recipe.timeToCookInMinutes }} minutes</div>
-              <div v-if="!family(recipe)">
-              <div>Likes: {{ recipe.likes }} likes</div>
+              <div v-if="!userRecipe">
+                <div>Likes: {{ recipe.likes }}  <b-icon icon="hand-thumbs-up"></b-icon></div>
               </div>
               <div> Number of meals: {{ recipe.numOfMeals }} meals</div>
               <b-icon icon="clock"></b-icon>
@@ -32,8 +31,8 @@
                 <li style="animation:ease-in">
                   Vegan:
                   <!--                                <img v-if="recipe.vegan" :src="'https://res.cloudinary.com/dfboebsri/image/upload/v1593098818/vegan_icon_k8coge.png'" style="width: -10%"/>-->
-                  <b-icon v-if="recipe.vegan === true && this.$root.store.username" icon="check-circle"></b-icon>
-                  <b-icon v-if="recipe.vegan === false && this.$root.store.username" icon="x-circle"></b-icon>
+                  <b-icon v-if="recipe.vegan === true" icon="check-circle"></b-icon>
+                  <b-icon v-if="recipe.vegan === false " icon="x-circle"></b-icon>
                 </li>
                 <li>
                   Vegetarian:
@@ -83,7 +82,8 @@ export default {
 
   data() {
     return {
-      recipe: null
+      recipe: null,
+      userRecipe: false
     };
   },
 
@@ -151,8 +151,10 @@ export default {
           numOfMeals: this.$route.params.numOfMeals,
           vegan: this.$route.params.vegan,
           vegetarian: this.$route.params.vegetarian,
+          gluten: this.$route.params.gluten
         };
         this.recipe = _recipe;
+        this.userRecipe = this.$route.params.userRecipe;
       } catch (error) {
         console.log(error);
       }

@@ -1,8 +1,11 @@
 <template>
     <div class="list-recipes">
+        <h3 style="text-align: center;
+  text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;;
+">Last Viewed Recipes</h3>
     <RecipePreviewList  style="width: auto"
-            title="Last Viewed Recipes"
-            :recipesTemp="watched"
+                        title=""
+                        :recipesTemp="watched"
             :class="{ center: true }"
     ></RecipePreviewList>
     </div>

@@ -25,7 +25,7 @@
       ingredients: recipe.ingredients,
       instructions: recipe.instructions,
       numOfMeals: recipe.numOfMeals,
-    } }"
+    userRecipe: userRecipe} }"
                 class="recipe-preview"
         >
 
@@ -33,7 +33,7 @@
 <!--                <mdb-mask flex-center Learn more />-->
 <!--            </mdb-view>-->
 
-            <b-card-img :src="recipe.pictureUrl" alt="Image" class="img-fluid" top></b-card-img>
+            <b-card-img :src="recipe.pictureUrl" alt="Image" class="zoom" top></b-card-img>
 
         </router-link>
 <!--            <b-row no-gutters>-->
@@ -186,6 +186,18 @@
 </script>
 
 <style scoped>
+    .zoom {
+        padding: 0px;
+        /*background-color: green;*/
+        transition: transform .2s; /* Animation */
+        width: 95%;
+        /*height: 200px;*/
+        margin: 0 auto;
+    }
+
+    .zoom:hover {
+        transform: scale(1.25); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
     .recipe-preview {
         display: inline-block;
         width: 100%;

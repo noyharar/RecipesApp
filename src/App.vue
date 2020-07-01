@@ -63,6 +63,7 @@
                         shift-v="-3"
                         animation="throb"
                         icon="person-circle"
+                        style="color: white"
                 ></b-icon></p>
                 <b-nav-text class="mb-0"
                 ><b> Hello, {{ $root.store.username }}: </b></b-nav-text
@@ -71,6 +72,9 @@
                         id="my-nav-dropdown"
                         text="Profile"
                         toggle-class="nav-link-custom" right>
+                      <b-dropdown-item to="/profile"
+                      >My Profile</b-dropdown-item
+                      >
                   <b-dropdown-item to="/favoritesRecipes"
                   >My Favorites Recipes</b-dropdown-item
                   >

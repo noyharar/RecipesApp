@@ -68,6 +68,8 @@ export default {
 }
 .title{
   margin: auto;
-  width: 50%;
-  padding: 10px;    }
+  width: 80%;
+  padding: 10px;
+  text-shadow: 2px 2px 4px black;
+}
 </style>

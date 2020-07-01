@@ -1,7 +1,7 @@
 <template>
     <div class="main-class">
     <b-container class="container">
-        <h1 class="title">Main Page</h1>
+        <h1 class="title"><b>Main Page</b></h1>
         <b-row >
             <b-col class="try">
                 <RandomRecipes >Explore these recipes</RandomRecipes>
@@ -77,5 +77,7 @@
     .title{
         margin: auto;
         width: 33%;
-        padding: 10px;    }
+        padding: 10px;
+        text-shadow: 2px 2px 4px black;
+    }
 </style>

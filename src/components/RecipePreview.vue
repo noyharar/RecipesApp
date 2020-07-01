@@ -28,21 +28,27 @@
     } }"
                 class="recipe-preview"
         >
-            <b-card-img :src="recipe.pictureUrl" alt="Image" class="recipe-image" top></b-card-img>
+
+<!--            <mdb-view class="zoom" :src="recipe.pictureUrl" alt="">-->
+<!--                <mdb-mask flex-center Learn more />-->
+<!--            </mdb-view>-->
+
+            <b-card-img :src="recipe.pictureUrl" alt="Image" class="img-fluid" top></b-card-img>
 
         </router-link>
 <!--            <b-row no-gutters>-->
 <!--                <b-card-img :src="recipe.pictureUrl" alt="Image" class="recipe-image" top></b-card-img>-->
                 <b-card-body :title="recipe.name">
-
+                    <div v-if="!userRecipe">
                         <b-icon v-if="seen(recipe) === true && this.$root.store.username" icon="eye-fill"></b-icon>&#160;&#160;&#160;
                         <b-icon v-if="favorite(recipe) === true && this.$root.store.username" icon="heart-fill" ></b-icon>
-                    <b-icon v-b-tooltip.hover title="Add recipe to your favorite" v-if="favorite(recipe) === false && this.$root.store.username" v-on:click=addFavoriteRecipe() type="button" icon="heart">
+                    <b-icon v-b-tooltip.hover title="Add recipe to your favorites" v-if="favorite(recipe) === false && this.$root.store.username" v-on:click=addFavoriteRecipe() type="button" icon="heart">
                     </b-icon>
 <!--                        <b-icon v-if="favorite(recipe) === false && this.$root.store.username" v-on:click=addFavoriteRecipe() type="button" icon="heart"></b-icon>-->
                         &#160;&#160;&#160;&#160;
                     <b-icon icon="hand-thumbs-up"></b-icon>
                         {{ recipe.likes }}
+                    </div>
                     <b-card-text>
                         <b-icon icon="clock"></b-icon>
                         {{ recipe.timeToCookInMinutes }} minutes
@@ -107,6 +113,7 @@
 
     export default {
         name: "recipePreview",
+
         data() {
             return {};
         },
@@ -146,6 +153,10 @@
                 type: Object,
                 required: true
             },
+            userRecipe:{
+                type: Boolean,
+                required: false
+            }
         },
         // id: {
         //   type: Number,

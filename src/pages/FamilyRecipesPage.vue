@@ -1,14 +1,13 @@
 <template>
     <div>
         <b-container class="container">
-            <h1 class="title"><b>My Family's Recipes</b></h1>
             <b-row>
                 <b-col>
                     <RecipePreviewList
+                            title="My Family's Recipes"
                             :recipesTemp="recipes"
-                            :class="{
-        center: true
-      }"
+                            :userRecipes=true
+                            :class="{ center: true }"
                             style="width: 50%"
                     ></RecipePreviewList>
                 </b-col>

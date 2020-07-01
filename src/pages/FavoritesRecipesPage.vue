@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-container class="container">
-            <h1 class="title">My Favorites</h1>
+<!--            <h1 class="title">My Favorites</h1>-->
             <b-row>
                 <b-col>
                     <RecipePreviewList

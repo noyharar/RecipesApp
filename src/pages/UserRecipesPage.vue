@@ -1,10 +1,11 @@
 <template>
     <div>
         <b-container class="container">
-            <h1 class="title"><b>My Recipes</b></h1>
+<!--            <h1 class="title"><b>My Recipes</b></h1>-->
             <b-row>
                 <b-col>
                     <RecipePreviewList
+                            title= "My Recipes"
                             :recipesTemp="recipes"
                             :class="{
         // center: true
@@ -69,8 +70,5 @@
         pointer-events: none;
         cursor: default;
     }
-    .title{
-        margin: auto;
-        width: 33%;
-        padding: 10px;    }
+
 </style>

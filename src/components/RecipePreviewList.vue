@@ -1,12 +1,13 @@
 <template>
   <b-container>
-    <h3>
-      {{ title }}:
+    <h1 class="title" ><b>
+      {{ title }}
+    </b>
       <slot></slot>
-    </h3>
+    </h1>
     <b-row v-for="r in recipesTemp" :key="r.id">
       <b-col>
-        <RecipePreview class="recipePreview" :recipe="r" />
+        <RecipePreview class="recipePreview" :recipe="r" :userRecipe="userRecipes" />
       </b-col>
     </b-row>
   </b-container>
@@ -26,6 +27,10 @@ export default {
     },
     recipesTemp: {
       type: Array,
+      required: false
+    },
+    userRecipes: {
+      type: Boolean,
       required: false
     }
   },
@@ -61,4 +66,8 @@ export default {
 .container {
   min-height: 600px;
 }
+.title{
+  margin: auto;
+  width: 50%;
+  padding: 10px;    }
 </style>

@@ -92,8 +92,7 @@
     </b-form>
     <br>
     <div v-if="this.recipes.length">
-      <b-dropdown  id="dropdown-dropright" text="Sort By" class="ml-5 w-75" variant="primary"
-                  style="width:250px;">
+      <b-dropdown text="Sort By" variant="light"  style="width:250px;" class="btn btn-outline-dark">
         <b-dropdown-item href="#" v-on:click="sortTime()">Time to cook</b-dropdown-item>
         <b-dropdown-item href="#"  v-on:click="sortPopularity()">Popularity</b-dropdown-item>
       </b-dropdown>

@@ -98,10 +98,8 @@
             </b-navbar>
         </div>
         <router-view />
-        <footer>
-
-
-
+        <footer class="footerClass">
+            &copy; All Rights Reserved to Noa Gorengot and Noy Harari
         </footer>
 <!--        <footer class="footerClass">-->
 <!--        Vegen:-->
@@ -199,7 +197,7 @@
         left: 0;
         bottom: 0;
         width: 100%;
-        background-color:   black;
+        background-color:   brown;
         color: white;
         min-height: auto;
         font-size: 11px;

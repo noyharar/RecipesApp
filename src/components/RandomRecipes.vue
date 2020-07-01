@@ -8,7 +8,6 @@
           :recipesTemp="recipes"
           :class="{ right: true }"
   ></RecipePreviewList>
-<br>
   <br>
   <footer>
   <div class="random-btn">

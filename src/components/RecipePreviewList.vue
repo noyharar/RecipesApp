@@ -7,7 +7,7 @@
     </h1>
     <b-row v-for="r in recipesTemp" :key="r.id">
       <b-col>
-        <RecipePreview class="recipePreview" :recipe="r" :userRecipe="userRecipes" />
+        <RecipePreview class="recipePreview" :recipe="r" :userRecipe="userRecipes" :userFamily="familyRecipes" />
       </b-col>
     </b-row>
   </b-container>
@@ -30,6 +30,10 @@ export default {
       required: false
     },
     userRecipes: {
+      type: Boolean,
+      required: false
+    },
+    familyRecipes: {
       type: Boolean,
       required: false
     }

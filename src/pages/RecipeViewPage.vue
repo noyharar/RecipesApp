@@ -9,11 +9,11 @@
         <div class="wrapper">
           <div class="wrapped">
             <div class="mb-3">
-              <div v-if="family(recipe)">
+              <div v-if="userFamily">
                 <br>
-                Family Member: {{ this.$root.store.familyRecipes.filter(r => r.id == recipe.id)[0].familyMember}}
+                Family Member: {{recipe.familyMember}}
                 <br>
-                Event time: {{ this.$root.store.familyRecipes.filter(r => r.id == recipe.id)[0].cookingEventTime}}
+                Event time: {{ recipe.cookingEventTime}}
 <!--                <img class="family-photo" :src= "this.$root.store.familyRecipes.filter(r => r.id === recipe.id)[0].pictureMemberFood" alt="image" />-->
               </div>
               <img v-if="favorite(recipe) && !family(recipe)" :src="'https://img.icons8.com/cotton/64/000000/like--v3.png'" />
@@ -65,8 +65,8 @@
             Instructions:
             <P v-html="recipe.instructions" ></P>
             </div>
-            <div v-if="family(recipe)">
-              <img class="family-photo" :src= "this.$root.store.familyRecipes.filter(r => r.id === recipe.id)[0].pictureMemberFood" alt="image" />
+            <div v-if="userFamily">
+              <img class="family-photo" :src= "recipe.pictureMemberFood" alt="image" />
             </div>
             </div>
 
@@ -83,7 +83,8 @@ export default {
   data() {
     return {
       recipe: null,
-      userRecipe: false
+      userRecipe: false,
+      userFamily: false
     };
   },
 
@@ -114,10 +115,10 @@ export default {
       let seen = this.$root.store.favoritesRecipes && this.$root.store.favoritesRecipes.includes(recipe.id);
       return seen;
     },
-    family(recipe) {
-      let seen = this.$root.store.familyRecipes && this.$root.store.familyRecipes.some(r=> r.id === recipe.id);
-      return seen;
-    },
+    // family(recipe) {
+    //   let seen = this.$root.store.familyRecipes && this.$root.store.familyRecipes.some(r=> r.id === recipe.id);
+    //   return seen;
+    // },
   async updateRecipeAsFavorite() {
     if(!this.$root.store.username) {
       return;
@@ -151,10 +152,14 @@ export default {
           numOfMeals: this.$route.params.numOfMeals,
           vegan: this.$route.params.vegan,
           vegetarian: this.$route.params.vegetarian,
-          gluten: this.$route.params.gluten
+          gluten: this.$route.params.gluten,
+          familyMember: this.$route.params.familyMember,
+          cookingEventTime: this.$route.params.cookingEventTime,
+          pictureMemberFood: this.$route.params.pictureMemberFood,
         };
         this.recipe = _recipe;
         this.userRecipe = this.$route.params.userRecipe;
+        this.userFamily = this.$route.params.userFamily;
       } catch (error) {
         console.log(error);
       }

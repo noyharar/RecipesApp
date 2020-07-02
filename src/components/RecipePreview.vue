@@ -25,7 +25,11 @@
       ingredients: recipe.ingredients,
       instructions: recipe.instructions,
       numOfMeals: recipe.numOfMeals,
-    userRecipe: userRecipe} }"
+      familyMember: recipe.familyMember,
+      cookingEventTime: recipe.cookingEventTime,
+        pictureMemberFood: recipe.pictureMemberFood,
+    userRecipe: userRecipe,
+    userFamily: userFamily} }"
                 class="recipe-preview"
         >
 
@@ -154,6 +158,10 @@
                 required: true
             },
             userRecipe:{
+                type: Boolean,
+                required: false
+            },
+            userFamily:{
                 type: Boolean,
                 required: false
             }

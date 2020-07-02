@@ -7,6 +7,7 @@
                             title="My Family's Recipes"
                             :recipesTemp="recipes"
                             :userRecipes=true
+                            :familyRecipes=true
                             :class="{ center: true }"
                             style="width: 50%"
                     ></RecipePreviewList>

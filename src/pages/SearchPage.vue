@@ -51,11 +51,11 @@
       >
         <multiselect
                 label-cols-sm="3"
-                v-model="cuisines"
+                v-model="cuisine"
                 :options="cuisineOptions"
                 :multiple="true"
                 :close-on-select="false"
-                :clear-on-select="false"
+                :clear-on-select="true"
                 placeholder="Choose cuisines"
                 label="name" track-by="name">
           <template slot="selection" slot-scope="{ values, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ values.length }} options selected</span></template>
@@ -74,7 +74,7 @@
                 :options="intolerancesOptions"
                 :multiple="true"
                 :close-on-select="false"
-                :clear-on-select="false"
+                :clear-on-select="true"
                 placeholder="Choose intolerances"
                 label="name" track-by="name">
           <template slot="selection" slot-scope="{ values, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ values.length }} options selected</span></template>
@@ -161,7 +161,7 @@
         errors: [],
         validated: false,
         recipes: [],
-        cuisines: [],
+        cuisine: [],
         cuisineOptions: [
           { name: 'African'},
           { name: 'American'},
@@ -232,7 +232,7 @@
               query: this.form.query,
               number: this.form.number,
               diet: this.form.diet,
-              cuisines: this.cuisines.map(x => x.name),
+              cuisine: this.cuisine.map(x => x.name),
               intolerances: this.intolerances.map(x => x.name)
             });
           }
@@ -242,7 +242,7 @@
                     query: this.form.query,
                     number: this.form.number,
                     diet: this.form.diet,
-                    cuisines: this.cuisines.map(x => x.name),
+                    cuisine: this.cuisine.map(x => x.name),
                     intolerances: this.intolerances.map(x => x.name)
                   }
           );
@@ -279,10 +279,10 @@
         //   // localStorage.removeItem("lastSearch");
                 console.log("queryyyy");
                 this.form.query = this.$root.store.lastSearch.query;
-                  this.form.number = this.$root.store.lastSearch.number
-                  this.form.diet = this.$root.store.lastSearch.diet,
-                  this.cuisines = this.$root.store.lastSearch.cuisines,
-                  this.intoleransces = this.$root.store.lastSearch.intoleransces
+                  this.form.number = this.$root.store.lastSearch.number;
+                  this.form.diet = this.$root.store.lastSearch.diet;
+                  this.cuisine = this.$root.store.lastSearch.cuisine;
+                  this.intoleransces = this.$root.store.lastSearch.intoleransces;
         }
       }
     }

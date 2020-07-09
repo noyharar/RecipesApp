@@ -38,7 +38,7 @@
    async updateRecipes() {
     try {
      const response = await this.axios.get(
-             "https://ass3-noa-noy.herokuapp.com/recipes/random"
+             this.$root.store.BASE_URL + "/recipes/random"
      );
 
      // console.log(response);

@@ -99,7 +99,7 @@ export default {
         }
         this.$root.store.addWatchedOneRecipe(this.recipe.id);
         const response = await this.axios.post(
-                "https://ass3-noa-noy.herokuapp.com/profile/watch",
+                this.$root.store.BASE_URL + "/profile/watch",
                 {
                   id: this.recipe.id,
                 },
@@ -126,7 +126,7 @@ export default {
     try {
       this.$root.store.addFavoriteOneRecipe(this.recipe.id);
       const response = await this.axios.post(
-              "https://ass3-noa-noy.herokuapp.com/profile/favorites",
+              this.$root.store.BASE_URL + "/profile/favorites",
               {
                 id: this.recipe.id,
               },

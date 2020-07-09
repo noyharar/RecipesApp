@@ -64,7 +64,7 @@
             async updateUserProfile() {
                 try {
                     const response = await this.axios.get(
-                        "https://ass3-noa-noy.herokuapp.com/profile"
+                        this.$root.store.BASE_URL + "/profile"
                     );
 
                     // console.log(response);
@@ -84,7 +84,7 @@
 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 500px;
-    hight: 500px;
+    height: 500px;
     margin: auto;
     text-align: center;
     font-family: arial;

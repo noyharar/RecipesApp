@@ -25,20 +25,22 @@
             };
         },
         mounted() {
+            console.log("watched rec")
             this.updateWatchedRecipes();
             this.updateFavoriteRecipes();
             // this.updateFamilyRecipes();
         },
         methods: {
             async updateWatchedRecipes() {
+                console.log("start",this.$root.store.username)
                 if(!this.$root.store.username) {
                     return;
                 }
                 try {
                     const response = await this.axios.get(
-                        "https://ass3-noa-noy.herokuapp.com/profile/watch"
+                        this.$root.store.BASE_URL + "/profile/watch"
                     );
-                    // console.log(response);
+                    console.log(123,response);
                     const watchedRecipes = response.data;
 
                     this.watched = [];
@@ -65,7 +67,7 @@
                 }
                 try {
                     const response = await this.axios.get(
-                        "https://ass3-noa-noy.herokuapp.com/profile/favorites"
+                        this.$root.store.BASE_URL + "/profile/favorites"
                     );
                     // console.log(response);
                     const favoriteRecipes = response.data;
@@ -87,7 +89,7 @@
             //     }
             //     try {
             //         const response = await this.axios.get(
-            //             "https://ass3-noa-noy.herokuapp.com/profile/family-recipes"
+            //             this.$root.store.BASE_URL + "/profile/family-recipes"
             //         );
             //         // console.log(response);
             //         const familyRecipes = response.data;

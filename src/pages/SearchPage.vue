@@ -227,6 +227,7 @@
         console.log("roiprprprppri")
         try {
           if(this.form.query.length > 0) {
+            console.log(29, this.$root.store.username);
             this.$root.store.addLastSearch({
               query: this.form.query,
               number: this.form.number,
@@ -236,7 +237,7 @@
             });
           }
           const response = await this.axios.post(
-                  "https://ass3-noa-noy.herokuapp.com/recipes/search",
+                  this.$root.store.BASE_URL + "/recipes/search",
                   {
                     query: this.form.query,
                     number: this.form.number,
@@ -245,7 +246,7 @@
                     intolerances: this.intolerances.map(x => x.name)
                   }
           );
-
+          console.log(30,response);
           const recipes = response.data;
           this.searched = true;
           this.recipes = [];

@@ -38,7 +38,7 @@
             async updateFamilyRecipes() {
                 try {
                     const response = await this.axios.get(
-                        "https://ass3-noa-noy.herokuapp.com/profile/family-recipes"
+                        this.$root.store.BASE_URL + "/profile/family-recipes"
                     );
 
                     // console.log(response);

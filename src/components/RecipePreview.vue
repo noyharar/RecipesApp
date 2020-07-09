@@ -138,7 +138,7 @@
                     }
                     this.$root.store.addFavoriteOneRecipe(this.recipe.id);
                     const response = await this.axios.post(
-                        "https://ass3-noa-noy.herokuapp.com/profile/favorites",
+                        this.$root.store.BASE_URL + "/profile/favorites",
                         {
                             id: this.recipe.id,
                         },

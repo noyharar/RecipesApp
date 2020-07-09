@@ -301,7 +301,8 @@
             async Register() {
                 try {
                     const response = await this.axios.post(
-                        "https://ass3-noa-noy.herokuapp.com/user/Register",
+                        //this.$root.store.BASE_URL + "/user/Register",
+                        this.$root.store.BASE_URL + "/user/Register",
                         {
                             username: this.form.username,
                             firstName: this.form.firstName,

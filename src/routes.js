@@ -30,16 +30,19 @@ const routes = [
     {
         path: "/myRecipes",
         name: "myRecipes",
+        meta: { requiresAuth: true },
         component: () => import("./pages/UserRecipesPage"),
     },
     {
         path: "/favoritesRecipes",
         name: "favoritesRecipes",
+        meta: { requiresAuth: true },
         component: () => import("./pages/FavoritesRecipesPage"),
     },
     {
         path: "/familyRecipes",
         name: "familyRecipes",
+        meta: { requiresAuth: true },
         component: () => import("./pages/FamilyRecipesPage"),
     },
     {

@@ -155,14 +155,19 @@ export default {
         const response = await this.axios.get(
         this.$root.store.BASE_URL + "/profile/favorites"
         );
-          console.log("testttttttt");
-          const fav = response.data;
-          this.fav = [];
-          this.fav.push(...fav);
-          console.log("test2");
-          console.log("recipeID", this.$route.params.recipeId );
-          console.log("includes",fav.includes(this.$route.params.recipeId));
-          this.isFavoriteRecipe_data = this.$root.store.fav.includes(this.$route.params.recipeId);
+        for (let key of response.data) {
+          console.log("key:", key);
+          if(key.id == this.$route.params.recipeId){
+            this.isFavoriteRecipe_data = true;
+            break;
+          }
+        }
+          // console.log("testttttttt");
+          // const fav = response.data;
+          // console.log("test2");
+          // console.log("recipeID", this.$route.params.recipeId );
+          // console.log("includes",fav.includes(this.$route.params.recipeId));
+          // this.isFavoriteRecipe_data = this.$root.store.fav.includes(this.$route.params.recipeId);
           console.log("doooooooooo", this.isFavoriteRecipe_data);
           // this.isFavoriteRecipe_data = favoriteRecipes.map((r) => r.id);
       } catch (error) {
@@ -184,9 +189,9 @@ export default {
         const response = await this.axios.post(
           this.$root.store.BASE_URL + "/profile/favorites",
           {
-            recipe_id: this.$route.params.recipeId,
+            // recipe_id: this.$route.params.recipeId,
             // id: this.$route.params.recipeId,
-            // id: this.recipe.id,
+            id: this.recipe.id,
           },
           {
             withCredentials: true,

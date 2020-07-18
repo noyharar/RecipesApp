@@ -6,47 +6,30 @@ import axios from "axios";
 const shared_data = {
   BASE_URL: "http://localhost:8888",
   username: localStorage.username,
-  watchedRecipes: localStorage.watchedRecipes ? JSON.parse(localStorage.watchedRecipes) : [],
-  favoriteRecipes: localStorage.favoriteRecipes ? JSON.parse(localStorage.favoriteRecipes) : [],
-  familyRecipes: localStorage.familyRecipes ? JSON.parse(localStorage.familyRecipes) : [],
+  watchedRecipes: [],
+  favoriteRecipes: [],
   lastSearch: localStorage.lastSearch ? JSON.parse(localStorage.lastSearch) : {},
 
   addLastSearch(i_lastSearch){
     localStorage.setItem("lastSearch", JSON.stringify(i_lastSearch));
     this.lastSearch = i_lastSearch;
-    // }
   },
 
   addWatchedOneRecipe(watchedRecipe){
-    let item = localStorage.watchedRecipes;
-    let current = item ? JSON.parse(item) : [];
-    if(!current.includes(watchedRecipe)) {
-      current.push(watchedRecipe);
-      localStorage.setItem("watchedRecipes",JSON.stringify(current));
-      this.watchedRecipes = current;
+    if(!this.watchedRecipes.includes(watchedRecipe)) {
+      this.watchedRecipes.push(watchedRecipe);
     }
   },
   addWatchedRecipes(watchedRecipes){
-    localStorage.setItem("watchedRecipes", JSON.stringify(watchedRecipes));
     this.watchedRecipes = watchedRecipes;
-    // }
   },
   addFavoriteOneRecipe(favoriteRecipe) {
-    let item = localStorage.favoriteRecipes;
-    let current = item ? JSON.parse(item) : [];
-    if(!current.includes(favoriteRecipe)) {
-      current.push(favoriteRecipe);
-      localStorage.setItem("favoriteRecipes",JSON.stringify(current));
-      this.favoriteRecipes = current;
+    if(!this.favoriteRecipes.includes(favoriteRecipe)) {
+      this.favoriteRecipes.push(favoriteRecipe);
     }
   },
   addFavoriteRecipes(favoriteRecipes){
-    localStorage.setItem("favoriteRecipes", JSON.stringify(favoriteRecipes));
     this.favoriteRecipes = favoriteRecipes;
-  },
-  addFamilyeRecipes(familyRecipes){
-    localStorage.setItem("familyRecipes", JSON.stringify(familyRecipes));
-    this.familyRecipes = familyRecipes;
   },
   login(username) {
     localStorage.setItem("username", username);
@@ -56,9 +39,6 @@ const shared_data = {
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
-    localStorage.removeItem("watchedRecipes");
-    localStorage.removeItem("favoriteRecipes");
-    localStorage.removeItem("familyRecipes");
     localStorage.removeItem("lastSearch");
     this.username = undefined;
     this.watchedRecipes = undefined;

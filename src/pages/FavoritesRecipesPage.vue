@@ -39,8 +39,14 @@
         methods: {
             async updateMyRecipes() {
                 try {
+                    let config = {
+                        params: {
+                            preview: true
+                        }
+                    };
                     const response = await this.axios.get(
-                        this.$root.store.BASE_URL + "/profile/favorites"
+                        this.$root.store.BASE_URL + "/profile/favorites",
+                        config
                     );
 
                     // console.log(response);

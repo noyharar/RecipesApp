@@ -40,14 +40,22 @@
                     const response = await this.axios.get(
                         this.$root.store.BASE_URL + "/profile/watch"
                     );
-                    console.log(123,response);
                     const watchedRecipes = response.data;
-
                     this.watched = [];
                     if (watchedRecipes.length > 0) {
                         this.$root.store.addWatchedRecipes(watchedRecipes.map(r => r.id));
-                        for (var i = 0; i < Math.min(3,watchedRecipes.length); i++) {
-                            this.watched.push(watchedRecipes[i]);
+                        let config = {
+                            params: {
+                                preview: true
+                            }
+                        };
+                        const preview = await this.axios.get(
+                            this.$root.store.BASE_URL + "/profile/watch",
+                            config
+                        );
+                        const previewWatchedRecipes = preview.data;
+                        for (var i = 0; i < previewWatchedRecipes.length; i++) {
+                            this.watched.push(previewWatchedRecipes[i]);
                         }
                     } else {
                         this.$root.store.addWatchedRecipes([]);

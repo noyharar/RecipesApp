@@ -8,13 +8,12 @@ const shared_data = {
   username: localStorage.username,
   watchedRecipes: [],
   favoriteRecipes: [],
-  lastSearch: localStorage.lastSearch ? JSON.parse(localStorage.lastSearch) : {},
+  lastSearch: localStorage.lastSearch ? JSON.parse(localStorage.lastSearch) : null,
 
   addLastSearch(i_lastSearch){
     localStorage.setItem("lastSearch", JSON.stringify(i_lastSearch));
     this.lastSearch = i_lastSearch;
   },
-
   addWatchedOneRecipe(watchedRecipe){
     if(!this.watchedRecipes.includes(watchedRecipe)) {
       this.watchedRecipes.push(watchedRecipe);

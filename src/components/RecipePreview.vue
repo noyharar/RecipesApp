@@ -89,28 +89,6 @@
 <!--            </b-row>-->
         </b-card>
 </template>
-<!--    <div class="recipe-body">-->
-<!--      <img :src="recipe.pictureUrl" class="recipe-image"/>-->
-<!--    </div>-->
-<!--  </router-link>-->
-<!--  <div class="recipe-footer">-->
-<!--      <div :title="recipe.name" class="recipe-title">-->
-<!--        {{ recipe.name }}-->
-<!--      </div>-->
-<!--      <ul class="recipe-overview">-->
-<!--        <li>{{ recipe.timeToCookInMinutes }} minutes</li>-->
-<!--        <li>{{ recipe.likes }} likes</li>-->
-<!--      </ul>-->
-<!--      <footer>-->
-<!--          <img v-if="favorite(recipe) === true && this.$root.store.username" :src="'https://img.icons8.com/cotton/64/000000/like&#45;&#45;v3.png'"  />-->
-<!--          <img v-if="favorite(recipe) === false && this.$root.store.username" v-on:click=addFavoriteRecipe() :src="'https://img.icons8.com/cotton/64/000000/plus&#45;&#45;v2.png'"  />-->
-<!--          <img v-if="recipe.vegan" :src="'https://img.icons8.com/color/48/000000/vegan-symbol.png'" />-->
-<!--          <img v-if="recipe.vegetarian" :src="'https://img.icons8.com/color/48/000000/vegetarian-mark.png'"  />-->
-<!--          <img v-if="seen(recipe) === true" :src="'https://img.icons8.com/dusk/64/000000/check-all.png'"  />-->
-<!--  </footer>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</template>-->
 
 <script>
     import MainPage from "../pages/MainPage";
@@ -124,7 +102,9 @@
         methods: {
             seen(recipe) {
                 let seen = this.$root.store.watchedRecipes && this.$root.store.watchedRecipes.includes(recipe.id);
-                // console.log("Watched: " + seen);
+                console.log("Watched: " + seen);
+                console.log("id " + recipe.id);
+                console.log(this.$root.store.watchedRecipes);
                 return seen;
             },
             favorite(recipe) {

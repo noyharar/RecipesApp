@@ -210,7 +210,7 @@ export default {
         { name: "European" },
         { name: "French" },
         { name: "German" },
-        { name: "Greek" },
+        { name: "Greenk" },
         { name: "Indian" },
         { name: "Irish" },
         { name: "Italian" },
@@ -266,16 +266,6 @@ export default {
     async Search() {
       console.log("roiprprprppri");
       try {
-        if (this.form.query.length > 0) {
-          console.log(29, this.$root.store.username);
-          this.$root.store.addLastSearch({
-            query: this.form.query,
-            number: this.form.number,
-            diet: this.form.diet,
-            cuisine: this.cuisine.map((x) => x.name),
-            intolerances: this.intolerances.map((x) => x.name),
-          });
-        }
         const response = await this.axios.post(
           this.$root.store.BASE_URL + "/recipes/search",
           {
@@ -290,8 +280,13 @@ export default {
         const recipes = response.data;
         this.recipes = [];
         this.recipes.push(...recipes);
-        if (this.$root.store.username != "") {
-          this.$root.store.lastSearch = this.recipes;
+        if (this.$root.store.username !== "") {
+          this.$root.store.addLastSearch({
+            form: this.form,
+            cuisine: this.cuisine,
+            intolerances: this.intolerances,
+            recipes: this.recipes
+          });
         }
         this.searched = true;
 
@@ -320,20 +315,12 @@ export default {
       this.recipes.sort((a, b) => b.likes - a.likes);
     },
     initLastSearch() {
-      if (this.$root.store.username != "") {
-        this.recipes = this.$root.store.lastSearch;
-        this.recipesLoaded = true;
+      if (this.$root.store.username !== "" && this.$root.store.lastSearch) {
+        this.form = this.$root.store.lastSearch.form;
+        this.cuisine = this.$root.store.lastSearch.cuisine;
+        this.intolerances = this.$root.store.lastSearch.intolerances;
+        this.recipes = this.$root.store.lastSearch.recipes;
       }
-      // console.log("noynoynoyno");
-      // if(this.$root.store.username && this.$root.store.lastSearch) {
-      // //   // localStorage.removeItem("lastSearch");
-      //         console.log("queryyyy");
-      //         this.form.query = this.$root.store.lastSearch.query;
-      //           this.form.number = this.$root.store.lastSearch.number;
-      //           this.form.diet = this.$root.store.lastSearch.diet;
-      //           this.cuisine = this.$root.store.lastSearch.cuisine;
-      //           this.intoleransces = this.$root.store.lastSearch.intoleransces;
-      // }
     },
   },
 };

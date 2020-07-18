@@ -25,14 +25,14 @@
             };
         },
         mounted() {
-            console.log("watched rec")
+            // console.log("watched rec")
             this.updateWatchedRecipes();
             this.updateFavoriteRecipes();
             // this.updateFamilyRecipes();
         },
         methods: {
             async updateWatchedRecipes() {
-                console.log("start",this.$root.store.username)
+                // console.log("start",this.$root.store.username)
                 if(!this.$root.store.username) {
                     return;
                 }
@@ -60,7 +60,7 @@
                     } else {
                         this.$root.store.addWatchedRecipes([]);
                     }
-                    console.log(this.watched);
+                    // console.log(this.watched);
 
                     // this.watched.push(...watchedRecipes);
                     // console.log(this.recipes);

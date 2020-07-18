@@ -154,15 +154,11 @@
 <script>
 import {
   required,
-  minLength,
-  maxLength,
-  alpha,
-  sameAs,
-  email,
 } from "vuelidate/lib/validators";
 import RecipePreviewList from "../components/RecipePreviewList";
 import Multiselect from "vue-multiselect";
-
+import { helpers } from 'vuelidate/lib/validators'
+const alpha_spaces = helpers.regex('alpha_spaces', /^[a-zA-Z ]*$/)
 export default {
   name: "search",
   components: {
@@ -248,7 +244,7 @@ export default {
     form: {
       query: {
         required,
-        alpha,
+        alpha_spaces,
       },
     },
   },

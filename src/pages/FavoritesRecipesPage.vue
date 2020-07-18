@@ -5,7 +5,7 @@
             <b-row>
                 <b-col>
                     <RecipePreviewList
-                            title="Favorites Recipes"
+                            title="My Favorites Recipes"
                             :recipesTemp="recipes"
                             :class="{
         // center: true

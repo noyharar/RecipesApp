@@ -33,12 +33,12 @@
                   <b-icon icon="hand-thumbs-up"></b-icon>
                   <br>
                   <b-icon
-                    v-if="isFavoriteRecipe_data"
+                    v-if="isFavoriteRecipe_data && this.$root.store.username"
                     icon="heart-fill"></b-icon>
                   <b-icon
                     v-b-tooltip.hover
                     title="Add recipe to your favorites"
-                    v-if="!isFavoriteRecipe_data"
+                    v-if="!isFavoriteRecipe_data && this.$root.store.username"
                     @click="updateRecipeAsFavorite"
                     type="button"
                     icon="heart"

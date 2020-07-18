@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div class="center">
         <b-card
                 title="About"
                 img-src="https://media1.tenor.com/images/335c59743ad925b364bc0615b681c0c0/tenor.gif"
                 img-alt="Image"
                 img-top
                 tag="article"
-                style="background: white; max-width: 20rem;"
+                style="background: white; max-width: 50rem;"
                 class="mb-2"
         >
             <b-card-text>
@@ -41,4 +41,10 @@
 </script>
 
 <style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
 </style>

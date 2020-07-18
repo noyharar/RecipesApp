@@ -52,17 +52,6 @@
 </script>
 
 <style lang="scss" scoped>
-    /*.main-class{*/
-    /*    !*!*position: inherit;*!*!*/
-    /*    !*margin-left: 100px;*!*/
-    /*    !*margin-right: 150px;*!*/
-    /*}*/
-    /*.try{*/
-    /*    mergin-left: auto;*/
-    /*}*/
-    /*.RandomRecipes {*/
-    /*    margin: 10px 0 10px;*/
-    /*}*/
     .blur {
         -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
         filter: blur(2px);

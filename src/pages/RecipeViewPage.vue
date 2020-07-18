@@ -42,7 +42,9 @@
                     @click="updateRecipeAsFavorite"
                     type="button"
                     icon="heart"
-                  ></b-icon>
+                  ></b-icon>&#160;&#160;&#160;
+                  <b-icon v-if="seenIcon === true && this.$root.store.username" icon="eye-fill"></b-icon>
+
                 </div>
               </div>
               <div>Number of meals: {{ recipe.numOfMeals }} meals</div>
@@ -121,6 +123,7 @@ export default {
       recipe: null,
       userRecipe: false,
       userFamily: false,
+      seenIcon: false,
       isFavoriteRecipe_data: this.checkFavRecipe,
     };
   },
@@ -157,7 +160,7 @@ export default {
         );
         for (let key of response.data) {
           console.log("key:", key);
-          if(key.id == this.$route.params.recipeId){
+          if(key.id == this.$route.params.recipe.id){
             this.isFavoriteRecipe_data = true;
             break;
           }
@@ -168,7 +171,7 @@ export default {
           // console.log("recipeID", this.$route.params.recipeId );
           // console.log("includes",fav.includes(this.$route.params.recipeId));
           // this.isFavoriteRecipe_data = this.$root.store.fav.includes(this.$route.params.recipeId);
-          console.log("doooooooooo", this.isFavoriteRecipe_data);
+          // console.log("doooooooooo", this.isFavoriteRecipe_data);
           // this.isFavoriteRecipe_data = favoriteRecipes.map((r) => r.id);
       } catch (error) {
         console.log(error);
@@ -205,25 +208,27 @@ export default {
   },
   async created() {
     try {
-      let _recipe = {
-        id: this.$route.params.recipeId,
-        name: this.$route.params.recipeName,
-        pictureUrl: this.$route.params.pictureUrl,
-        timeToCookInMinutes: this.$route.params.timeToCookInMinutes,
-        likes: this.$route.params.likes,
-        ingredients: this.$route.params.ingredients,
-        instructions: this.$route.params.instructions,
-        numOfMeals: this.$route.params.numOfMeals,
-        vegan: this.$route.params.vegan,
-        vegetarian: this.$route.params.vegetarian,
-        gluten: this.$route.params.gluten,
-        familyMember: this.$route.params.familyMember,
-        cookingEventTime: this.$route.params.cookingEventTime,
-        pictureMemberFood: this.$route.params.pictureMemberFood,
-      };
-      this.recipe = _recipe;
+      // let _recipe = {
+      //   id: this.$route.params.recipeId,
+      //   name: this.$route.params.recipeName,
+      //   pictureUrl: this.$route.params.pictureUrl,
+      //   timeToCookInMinutes: this.$route.params.timeToCookInMinutes,
+      //   likes: this.$route.params.likes,
+      //   ingredients: this.$route.params.ingredients,
+      //   instructions: this.$route.params.instructions,
+      //   numOfMeals: this.$route.params.numOfMeals,
+      //   vegan: this.$route.params.vegan,
+      //   vegetarian: this.$route.params.vegetarian,
+      //   gluten: this.$route.params.gluten,
+      //   familyMember: this.$route.params.familyMember,
+      //   cookingEventTime: this.$route.params.cookingEventTime,
+      //   pictureMemberFood: this.$route.params.pictureMemberFood,
+      // };
+      this.recipe =  this.$route.params.recipe;
+      // this.recipe = _recipe;
       this.userRecipe = this.$route.params.userRecipe;
       this.userFamily = this.$route.params.userFamily;
+      this.seenIcon = this.$route.params.seenIcon;
     } catch (error) {
       console.log(error);
     }
@@ -256,7 +261,7 @@ export default {
 }
 
 .family-photo {
-  border: 1px solid #ddd;
+  border: 2px solid brown;
   border-radius: 4px;
   padding: 5px;
   width: 300px;

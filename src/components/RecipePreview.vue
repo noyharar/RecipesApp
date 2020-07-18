@@ -13,23 +13,12 @@
 
         >
         <router-link
-                :to="{ name: 'recipe', params: {
-      recipeId: recipe.id,
-      recipeName: recipe.name,
-      pictureUrl: recipe.pictureUrl,
-      timeToCookInMinutes: recipe.timeToCookInMinutes,
-      likes: recipe.likes,
-      vegan: recipe.vegan,
-      gluten: recipe.gluten,
-      vegetarian: recipe.vegetarian,
-      ingredients: recipe.ingredients,
-      instructions: recipe.instructions,
-      numOfMeals: recipe.numOfMeals,
-      familyMember: recipe.familyMember,
-      cookingEventTime: recipe.cookingEventTime,
-        pictureMemberFood: recipe.pictureMemberFood,
-    userRecipe: userRecipe,
-    userFamily: userFamily} }"
+                :to="{ name: 'recipe', params:{
+                 recipe: recipe ,
+                recipeId: recipe.id,
+                userRecipe: userRecipe,
+                userFamily: userFamily,
+                seenIcon: seenIcon} }"
                 class="recipe-preview"
         >
 
@@ -97,14 +86,14 @@
         name: "recipePreview",
 
         data() {
-            return {};
+            return {
+                seenIcon:false
+            };
         },
         methods: {
             seen(recipe) {
                 let seen = this.$root.store.watchedRecipes && this.$root.store.watchedRecipes.includes(recipe.id);
-                console.log("Watched: " + seen);
-                console.log("id " + recipe.id);
-                console.log(this.$root.store.watchedRecipes);
+                this.seenIcon = seen;
                 return seen;
             },
             favorite(recipe) {
@@ -144,31 +133,9 @@
             userFamily:{
                 type: Boolean,
                 required: false
-            }
+            },
+
         },
-        // id: {
-        //   type: Number,
-        //   required: true
-        // },
-        // title: {
-        //   type: String,
-        //   required: true
-        // },
-        // readyInMinutes: {
-        //   type: Number,
-        //   required: true
-        // },
-        // image: {
-        //   type: String,
-        //   required: true
-        // },
-        // aggregateLikes: {
-        //   type: Number,
-        //   required: false,
-        //   default() {
-        //     return undefined;
-        //   }
-        // }
 
     };
 </script>

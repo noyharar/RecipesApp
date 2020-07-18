@@ -1,6 +1,15 @@
 <template>
     <div class="container">
         <h1 class="title">Register</h1>
+        <b-alert
+                class="mt-2"
+                v-if="form.submitError"
+                variant="warning"
+                dismissible
+                show
+        >
+            Register failed: {{ form.submitError }}
+        </b-alert>
         <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
             <b-form-group
                     id="input-group-username"
@@ -197,16 +206,10 @@
                 You have an account already?
                 <router-link to="login"> Log in here</router-link>
             </div>
+            <br>
+            <br>
         </b-form>
-        <b-alert
-                class="mt-2"
-                v-if="form.submitError"
-                variant="warning"
-                dismissible
-                show
-        >
-            Register failed: {{ form.submitError }}
-        </b-alert>
+
         <!-- <b-card class="mt-3 md-3" header="Form Data Result">
           <pre class="m-0"><strong>form:</strong> {{ form }}</pre>
           <pre class="m-0"><strong>$v.form:</strong> {{ $v.form }}</pre>

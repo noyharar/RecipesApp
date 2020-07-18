@@ -1,0 +1,585 @@
+openapi: 3.0.0
+info:
+  title: recipes API
+  description: This is a our recipes website API
+  contact:
+    email: noagoren@post.bgu.ac.il
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: recipesApiNoaAndNoyForAss3.3
+servers:
+- url: https://virtserver.swaggerhub.com/noyharar8/getRecipes/1.0.0
+  description: SwaggerHub API Auto Mocking
+tags:
+- name: Recipes
+  description: Recipes API's
+- name: User
+  description: User API'S
+- name: Profile
+  description: Profile API's
+paths:
+  /recipes/search:
+    post:
+      tags:
+      - Recipes
+      summary: Search recipes
+      description: |
+        Search recipes
+      operationId: searchRecipes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRecipes'
+      responses:
+        "200":
+          description: Search recipes successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/recipes'
+        "500":
+          description: Internal sever error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /recipes/random:
+    get:
+      tags:
+      - Recipes
+      summary: Random recipes
+      description: |
+        Random recipes
+      operationId: randomRecipes
+      responses:
+        "200":
+          description: Random recipes successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/recipes'
+        "500":
+          description: Internal sever error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/register:
+    post:
+      tags:
+      - User
+      summary: Create user
+      description: Create user
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        "200":
+          description: new user created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: user created
+                  success: true
+        "409":
+          description: Username already exists
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Username already exists
+                  success: false
+        "500":
+          description: Internal sever error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/login:
+    post:
+      tags:
+      - User
+      summary: Login user into the system
+      operationId: loginUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+      responses:
+        "200":
+          description: successful login
+          headers:
+            Set-Cookie:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: session=<my_session_id>
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: login succeeded
+                  success: true
+        "400":
+          description: Incorrect details
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Username or Password incorrect
+                  success: false
+        "500":
+          description: Internal sever error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/logout:
+    post:
+      tags:
+      - User
+      summary: Logout the user
+      operationId: logoutUser
+      responses:
+        "200":
+          description: successful logout
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: logout succeeded
+                  success: true
+        "500":
+          description: Internal sever error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+  /profile/recipes:
+    get:
+      tags:
+      - Profile
+      summary: return user's recipes
+      operationId: getUserRecipes
+      responses:
+        "200":
+          description: Get user's recipes successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/recipes'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal sever error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+  /profile/favorites:
+    get:
+      tags:
+      - Profile
+      summary: get user's favorites
+      operationId: getUserFavorites
+      parameters:
+      - name: preview
+        in: query
+        description: Return the full recipe if true, or only the id if false
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      responses:
+        "200":
+          description: Get user favorites recipes successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/recipes'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal sever error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+    post:
+      tags:
+      - Profile
+      summary: add recipe to favorites
+      operationId: addRecipeFavorites
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Favorite'
+      responses:
+        "200":
+          description: Add recipe to favorites
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: favorite recipe added successfully
+                  success: true
+        "400":
+          description: The recipe already in your favorites
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: The recipe already in your favorites
+                  success: false
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal sever error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+  /profile/watch:
+    get:
+      tags:
+      - Profile
+      summary: get user's watched
+      operationId: getUserWatched
+      parameters:
+      - name: preview
+        in: query
+        description: Return the full recipe if true, or only the id if false
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      responses:
+        "200":
+          description: Get user watched recipes successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/recipes'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal sever error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+    post:
+      tags:
+      - Profile
+      summary: add or update recipe to watched
+      operationId: addRecipeWatched
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WatchedRecipe'
+      responses:
+        "200":
+          description: Add recipe to watch list
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: watched recipe
+                  success: true
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal sever error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+  /profile/family-recipes:
+    get:
+      tags:
+      - Profile
+      summary: get user's family recipe
+      operationId: getUserFamilyrecipes
+      responses:
+        "200":
+          description: Get user family recipes successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FamilyRecipes'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal sever error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+  /profile:
+    get:
+      tags:
+      - Profile
+      summary: get user's details
+      operationId: getUserDetails
+      responses:
+        "200":
+          description: Get user details successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal sever error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: internal sever error
+        success:
+          type: boolean
+          example: false
+    UnauthorizedError:
+      type: object
+      properties:
+        message:
+          type: string
+          example: unauthorized
+        success:
+          type: boolean
+          example: false
+    UserLogin:
+      type: object
+      properties:
+        username:
+          type: string
+          example: noa
+        password:
+          type: string
+          example: noa@123
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+          example: noa
+        firstName:
+          type: string
+          example: noa
+        lastName:
+          type: string
+          example: noa
+        country:
+          type: string
+          example: Israel
+        password:
+          type: string
+          writeOnly: true
+          example: noa@123
+        email:
+          type: string
+          example: noa@gmail.com
+        profilePicture:
+          type: string
+          example: https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/16196015_10154888128487744_6901111466535510271_n.png?_nc_cat=103&_nc_sid=85a577&_nc_ohc=RGRDl2yDZX4AX8gyo3I&_nc_ht=scontent.fsdv3-1.fna&oh=73c128ea15a3e3a6a385ed90c9b69bf7&oe=5EE10917
+    SearchRecipes:
+      required:
+      - query
+      type: object
+      properties:
+        query:
+          type: string
+          example: pizza
+        number:
+          type: integer
+          example: 5
+          enum:
+          - 5
+          - 10
+          - 15
+        diet:
+          type: string
+          example: vegetarian
+        cuisine:
+          type: array
+          example:
+          - italian
+          items:
+            type: string
+        intolerances:
+          type: array
+          example:
+          - gluten
+          items:
+            type: string
+    recipes:
+      type: array
+      items:
+        $ref: '#/components/schemas/RecipeItem'
+    FamilyRecipes:
+      type: array
+      items:
+        $ref: '#/components/schemas/FamilyRecipe'
+    RecipeItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 716429
+        name:
+          type: string
+          example: pizza
+        timeToCookInMinutes:
+          type: integer
+          example: 45
+        likes:
+          type: integer
+          example: 200
+        vegaterian:
+          type: boolean
+          example: false
+        vegan:
+          type: boolean
+          example: true
+        gluten:
+          type: boolean
+          example: false
+        pictureUrl:
+          type: string
+          example: https://media-cdn.tripadvisor.com/media/photo-s/09/07/bb/36/pizza-hut.jpg
+        instructions:
+          type: string
+          example: cook in microwave
+        ingredients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipeItem_ingredients'
+        numOfMeals:
+          type: integer
+    Favorite:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 716429
+    WatchedRecipe:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 716429
+    FamilyRecipe:
+      allOf:
+      - $ref: '#/components/schemas/RecipeItem'
+      - type: object
+        properties:
+          familyMember:
+            type: string
+            example: grandma sara
+          cookingEventTime:
+            type: string
+            example: Passover
+          pictureMemberFood:
+            type: string
+            example: data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD
+    RecipeItem_ingredients:
+      properties:
+        name:
+          type: string
+          example: butter
+        amount:
+          type: number
+          example: 2
+        unit:
+          type: string
+          example: cup
+  responses:
+    InternalError:
+      description: Internal sever error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      name: session
+      in: cookie

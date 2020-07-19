@@ -188,7 +188,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/UnauthorizedError'
         "500":
           description: Internal sever error
           content:
@@ -224,7 +224,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/UnauthorizedError'
         "500":
           description: Internal sever error
           content:
@@ -267,7 +267,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/UnauthorizedError'
         "500":
           description: Internal sever error
           content:
@@ -303,7 +303,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/UnauthorizedError'
         "500":
           description: Internal sever error
           content:
@@ -337,7 +337,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/UnauthorizedError'
         "500":
           description: Internal sever error
           content:
@@ -364,7 +364,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/UnauthorizedError'
         "500":
           description: Internal sever error
           content:
@@ -391,7 +391,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/UnauthorizedError'
         "500":
           description: Internal sever error
           content:
@@ -577,7 +577,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/UnauthorizedError'
   securitySchemes:
     cookieAuth:
       type: apiKey

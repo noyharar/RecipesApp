@@ -13,9 +13,9 @@ Our backend server in directory: backend-server3.2
 
 Our users in the DB:
 
-username : noyharar password : password@1234
+username : noyharar password : pass@1234
 
-username : noagoren password : password@1234
+username : noagoren password : pass@1234
 
 In our DB you can find for each user 3 family recipes and 3 personal recipes.
 

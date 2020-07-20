@@ -149,7 +149,6 @@
 
 
 <script>
-    import dropdown from "./components/dropdown";
 
     export default {
         name: "App",

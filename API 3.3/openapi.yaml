@@ -50,8 +50,7 @@ paths:
       tags:
       - Recipes
       summary: Random recipes
-      description: |
-        Random recipes
+      description: Three Random recipes
       operationId: randomRecipes
       responses:
         "200":
@@ -454,7 +453,7 @@ components:
         password:
           maxLength: 10
           minLength: 5
-          pattern: must contains almost one digit and one special sign
+          pattern: must contains at least one digit and one special sign
           type: string
           writeOnly: true
           example: noa@123

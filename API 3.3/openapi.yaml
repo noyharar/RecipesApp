@@ -433,26 +433,38 @@ components:
       type: object
       properties:
         username:
+          maxLength: 8
+          minLength: 3
+          uniqueItems: true
           type: string
+          description: only letters
           example: noa
         firstName:
           type: string
+          description: only letters
           example: noa
         lastName:
           type: string
+          description: only letters
           example: noa
         country:
           type: string
+          description: choosen from values
           example: Israel
         password:
+          maxLength: 10
+          minLength: 5
+          pattern: must contains almost one digit and one special sign
           type: string
           writeOnly: true
           example: noa@123
         email:
           type: string
+          description: email pattern
           example: noa@gmail.com
         profilePicture:
           type: string
+          description: url pattern
           example: https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/16196015_10154888128487744_6901111466535510271_n.png?_nc_cat=103&_nc_sid=85a577&_nc_ohc=RGRDl2yDZX4AX8gyo3I&_nc_ht=scontent.fsdv3-1.fna&oh=73c128ea15a3e3a6a385ed90c9b69bf7&oe=5EE10917
     SearchRecipes:
       required:

@@ -1,5 +1,7 @@
-assignment-3-2-203269394_308157965
-assignment-3-3 Frontend development
+repository - assignment-3-2-v2-203269394_308157965 
+for assignment-3-3 Frontend development
+
+last version in "master" branch
 
 Noy Harari - id : 308157965 Noa Gorengot - id : 203269394
 
@@ -13,7 +15,7 @@ Our users in the DB:
 
 username : noyharar password : password@1234
 
-username : noagoren password : password@123
+username : noagoren password : password@1234
 
 In our DB you can find for each user 3 family recipes and 3 personal recipes.
 

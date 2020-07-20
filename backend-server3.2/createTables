@@ -1,0 +1,95 @@
+DROP TABLE recipes
+
+CREATE TABLE [dbo].[users](
+    [user_id] [varchar](40) PRIMARY KEY NOT NULL default NEWID(),
+    [username] [varchar](30) NOT NULL UNIQUE,
+    [firstName] [varchar](30) NOT NULL,
+    [lastName] [varchar](30) NOT NULL,
+    [country] [varchar](64) NOT NULL,
+    [password] [varchar](300) NOT NULL,
+    [email] [varchar](300) NOT NULL,
+    [profilePicture] [varchar](500) NOT NULL
+    )
+
+CREATE TABLE [dbo].[recipes](
+    [recipe_id] [varchar](40) NOT NULL default NEWID(),
+    [recipe_name] [varchar](300) NOT NULL,
+    [time_to_cook_in_minutes] [varchar](40) NOT NULL,
+    [likes] [varchar](40) NOT NULL,
+    [vegetarian] [Bit] DEFAULT 0 NOT NULL,
+    [vegan] [Bit] DEFAULT 0 NOT NULL,
+    [gluten] [Bit] DEFAULT 0 NOT NULL,
+    [pictureUrl] [varchar](200) NOT NULL,
+    [ingredients] [varchar](8000) NOT NULL,
+    [instructions] [varchar](8000) NOT NULL,
+    [numOfMeals] [int] NOT NULL,
+    [author] [varchar](40) NOT NULL,
+
+    PRIMARY KEY (author, recipe_name),
+    FOREIGN KEY (author) REFERENCES users(user_id)
+    )
+CREATE TABLE [dbo].[familyRecipes](
+        [recipe_id] [varchar](40) NOT NULL default NEWID(),
+        [recipe_name] [varchar](300) NOT NULL,
+        [time_to_cook_in_minutes] [varchar](40) NOT NULL,
+        [likes] [varchar](40) NOT NULL,
+        [vegetarian] [Bit] DEFAULT 0 NOT NULL,
+        [vegan] [Bit] DEFAULT 0 NOT NULL,
+        [gluten] [Bit] DEFAULT 0 NOT NULL,
+        [pictureUrl] [varchar](200) NOT NULL,
+        [ingredients] [varchar](8000) NOT NULL,
+        [instructions] [varchar](8000) NOT NULL,
+        [numOfMeals] [int] NOT NULL,
+        [familyMember] [varchar](40) NOT NULL,
+        [cooking_Event_Time] [varchar](40) NOT NULL,
+        [picture_Member_Food] [varchar](200) NOT NULL,
+        [author] [varchar](40) NOT NULL,
+        PRIMARY KEY (author, recipe_name),
+        FOREIGN KEY (author) REFERENCES users(user_id)
+        )
+CREATE TABLE [dbo].[favorites](
+    [user_id]  [varchar](40) NOT NULL,
+    [recipe_id]  [varchar](40) NOT NULL,
+    PRIMARY KEY (user_id, recipe_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    )
+
+
+CREATE TABLE [dbo].[watched](
+    [user_id]  [varchar](40) NOT NULL,
+    [recipe_id]  [varchar](40) NOT NULL,
+    [watched_date] [numeric](250) NOT NULL,
+    PRIMARY KEY (user_id, recipe_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    )
+
+
+
+
+-- SELECT * FROM favorites where  user_id= noyharar
+
+
+INSERT INTO [dbo].[users]
+(
+    [user_id]
+, [username]
+, [password]
+)
+VALUES
+    (
+    'noyharar'
+        ,'noyharar'
+        ,'noyharar'
+    );
+
+
+INSERT INTO [dbo].[favorites]
+(
+    [user_id]
+, [recipe_id]
+)
+VALUES
+    (
+    'noyharar'
+        ,'recipe'
+    );
